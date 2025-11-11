@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +14,7 @@ export default function ProductCard({ producto, onClick }) {
       transition={{ duration: 0.3 }}
     >
       <Card 
-        className="group cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-blue-300 bg-white/90 backdrop-blur-sm overflow-hidden h-full"
+        className="group cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-red-300 bg-white/90 backdrop-blur-sm overflow-hidden h-full"
         onClick={onClick}
       >
         <div className="relative">
@@ -26,14 +27,14 @@ export default function ProductCard({ producto, onClick }) {
               />
             </div>
           ) : (
-            <div className="h-48 bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center">
-              <Package className="w-16 h-16 text-blue-400" />
+            <div className="h-48 bg-gradient-to-br from-red-100 to-rose-100 flex items-center justify-center">
+              <Package className="w-16 h-16 text-red-400" />
             </div>
           )}
           
           {producto.categoria && (
             <div className="absolute top-3 right-3">
-              <Badge className="bg-blue-600 text-white shadow-lg">
+              <Badge className="bg-red-600 text-white shadow-lg">
                 {producto.categoria}
               </Badge>
             </div>
@@ -41,7 +42,7 @@ export default function ProductCard({ producto, onClick }) {
         </div>
 
         <CardHeader className="pb-3">
-          <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2">
+          <h3 className="font-bold text-lg text-slate-800 group-hover:text-red-600 transition-colors line-clamp-2">
             {producto.nombre}
           </h3>
         </CardHeader>
@@ -57,7 +58,7 @@ export default function ProductCard({ producto, onClick }) {
                 <Badge 
                   key={idx} 
                   variant="outline" 
-                  className="text-xs bg-green-50 text-green-700 border-green-200"
+                  className="text-xs bg-red-50 text-red-700 border-red-200"
                 >
                   {especie}
                 </Badge>

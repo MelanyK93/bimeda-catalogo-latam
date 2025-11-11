@@ -15,6 +15,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import ChatWidget from "../components/chat/ChatWidget";
 
 const navigationItems = [
   {
@@ -44,21 +45,17 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50">
+      <div className="min-h-screen flex w-full bg-gradient-to-br from-slate-50 via-red-50 to-rose-50">
         <Sidebar className="border-r border-slate-200 bg-white/80 backdrop-blur-sm">
           <SidebarHeader className="border-b border-slate-200 p-6">
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-xl">B</span>
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-              </div>
-              <div>
-                <h2 className="font-bold text-lg text-slate-800">Bimeda</h2>
-                <p className="text-xs text-slate-500">Catálogo Digital</p>
-              </div>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/d7dc605ce_Bimeda-logotipoPNG.png"
+                alt="Bimeda"
+                className="h-10 object-contain"
+              />
             </div>
+            <p className="text-xs text-slate-500 mt-2">Catálogo Digital</p>
           </SidebarHeader>
           
           <SidebarContent className="p-3">
@@ -74,7 +71,7 @@ export default function Layout({ children, currentPageName }) {
                         asChild 
                         className={`transition-all duration-200 rounded-xl mb-1 ${
                           location.pathname === item.url 
-                            ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg shadow-blue-200' 
+                            ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg shadow-red-200' 
                             : 'hover:bg-slate-100 text-slate-700'
                         }`}
                       >
@@ -89,7 +86,7 @@ export default function Layout({ children, currentPageName }) {
               </SidebarGroupContent>
             </SidebarGroup>
 
-            <div className="mt-6 mx-3 p-4 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl text-white">
+            <div className="mt-6 mx-3 p-4 bg-gradient-to-br from-red-600 to-red-700 rounded-xl text-white">
               <p className="text-sm font-medium mb-1">Laboratorio Veterinario</p>
               <p className="text-xs opacity-90">Productos de calidad para el cuidado animal</p>
             </div>
@@ -100,12 +97,11 @@ export default function Layout({ children, currentPageName }) {
           <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 md:hidden sticky top-0 z-10">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="hover:bg-slate-100 p-2 rounded-lg transition-colors duration-200" />
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">B</span>
-                </div>
-                <h1 className="text-lg font-bold text-slate-800">Bimeda</h1>
-              </div>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/d7dc605ce_Bimeda-logotipoPNG.png"
+                alt="Bimeda"
+                className="h-6 object-contain"
+              />
             </div>
           </header>
 
@@ -113,6 +109,8 @@ export default function Layout({ children, currentPageName }) {
             {children}
           </div>
         </main>
+
+        <ChatWidget />
       </div>
     </SidebarProvider>
   );

@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const especies = [
   { nombre: "Bovinos", icon: "🐄", color: "from-amber-400 to-orange-500" },
-  { nombre: "Equinos", icon: "🐴", color: "from-blue-400 to-indigo-500" },
+  { nombre: "Equinos", icon: "🐴", color: "from-red-400 to-rose-500" },
   { nombre: "Porcinos", icon: "🐷", color: "from-pink-400 to-rose-500" },
   { nombre: "Ovinos", icon: "🐑", color: "from-slate-300 to-slate-500" },
   { nombre: "Caninos", icon: "🐕", color: "from-yellow-400 to-amber-500" },
@@ -19,9 +19,9 @@ const especies = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-rose-50">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-500 to-green-600 text-white">
+      <div className="relative overflow-hidden bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PC9nPjwvc3ZnPg==')] opacity-10"></div>
         
         <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 relative">
@@ -32,19 +32,21 @@ export default function Home() {
             className="text-center"
           >
             <div className="inline-block mb-6">
-              <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto border-4 border-white/30 shadow-2xl">
-                <span className="text-5xl font-bold">B</span>
-              </div>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/d7dc605ce_Bimeda-logotipoPNG.png"
+                alt="Bimeda"
+                className="h-24 mx-auto filter brightness-0 invert"
+              />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              Catálogo Digital Bimeda
+              Catálogo Digital
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 text-red-100 max-w-3xl mx-auto">
               Productos veterinarios de calidad para distribuidores y vendedores
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to={createPageUrl("Catalogo")}>
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 shadow-xl text-lg px-8 py-6">
+                <Button size="lg" className="bg-white text-red-600 hover:bg-red-50 shadow-xl text-lg px-8 py-6">
                   <Package className="w-5 h-5 mr-2" />
                   Ver Catálogo Completo
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -92,12 +94,12 @@ export default function Home() {
                 transition={{ delay: 0.1 * index }}
               >
                 <Link to={`${createPageUrl("Catalogo")}?especie=${especie.nombre}`}>
-                  <Card className="group hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-blue-200 bg-white/80 backdrop-blur-sm overflow-hidden">
+                  <Card className="group hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-red-200 bg-white/80 backdrop-blur-sm overflow-hidden">
                     <CardContent className="p-6 text-center">
                       <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${especie.color} flex items-center justify-center text-4xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                         {especie.icon}
                       </div>
-                      <h3 className="font-bold text-lg text-slate-800 group-hover:text-blue-600 transition-colors">
+                      <h3 className="font-bold text-lg text-slate-800 group-hover:text-red-600 transition-colors">
                         {especie.nombre}
                       </h3>
                     </CardContent>
@@ -109,27 +111,27 @@ export default function Home() {
 
           {/* Stats Cards */}
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white border-0 shadow-xl">
+            <Card className="bg-gradient-to-br from-red-600 to-red-700 text-white border-0 shadow-xl">
               <CardContent className="p-6">
                 <Package className="w-12 h-12 mb-3 opacity-80" />
                 <h3 className="text-3xl font-bold mb-1">100+</h3>
-                <p className="text-blue-100">Productos disponibles</p>
+                <p className="text-red-100">Productos disponibles</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white border-0 shadow-xl">
+            <Card className="bg-gradient-to-br from-rose-600 to-rose-700 text-white border-0 shadow-xl">
               <CardContent className="p-6">
                 <Globe className="w-12 h-12 mb-3 opacity-80" />
                 <h3 className="text-3xl font-bold mb-1">11</h3>
-                <p className="text-green-100">Países en Latinoamérica</p>
+                <p className="text-rose-100">Países en Latinoamérica</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0 shadow-xl">
+            <Card className="bg-gradient-to-br from-red-700 to-red-800 text-white border-0 shadow-xl">
               <CardContent className="p-6">
                 <Search className="w-12 h-12 mb-3 opacity-80" />
                 <h3 className="text-3xl font-bold mb-1">14</h3>
-                <p className="text-purple-100">Categorías de productos</p>
+                <p className="text-red-100">Categorías de productos</p>
               </CardContent>
             </Card>
           </div>

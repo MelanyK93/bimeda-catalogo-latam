@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
@@ -65,7 +66,7 @@ export default function Busqueda() {
   const totalFilters = selectedEspecies.length + selectedCategorias.length + selectedPaises.length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-green-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-rose-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">

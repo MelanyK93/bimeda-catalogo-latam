@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
@@ -209,7 +210,7 @@ export default function ProductForm({ producto, onSave, onCancel }) {
                   variant={formData.especies?.includes(especie) ? "default" : "outline"}
                   className={`cursor-pointer transition-all ${
                     formData.especies?.includes(especie) 
-                      ? 'bg-green-600 hover:bg-green-700' 
+                      ? 'bg-red-600 hover:bg-red-700' 
                       : 'hover:bg-slate-100'
                   }`}
                   onClick={() => toggleArrayItem('especies', especie)}
@@ -232,7 +233,7 @@ export default function ProductForm({ producto, onSave, onCancel }) {
                   variant={formData.paises?.includes(pais) ? "default" : "outline"}
                   className={`cursor-pointer transition-all ${
                     formData.paises?.includes(pais) 
-                      ? 'bg-blue-600 hover:bg-blue-700' 
+                      ? 'bg-red-600 hover:bg-red-700' 
                       : 'hover:bg-slate-100'
                   }`}
                   onClick={() => toggleArrayItem('paises', pais)}
@@ -271,7 +272,7 @@ export default function ProductForm({ producto, onSave, onCancel }) {
             <Button
               type="submit"
               disabled={saving || uploading}
-              className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700"
+              className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
             >
               {saving ? (
                 <>

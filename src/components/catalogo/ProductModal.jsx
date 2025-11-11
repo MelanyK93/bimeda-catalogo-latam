@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Dialog,
@@ -27,8 +28,8 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                   />
                 </div>
               ) : (
-                <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-xl p-6 flex items-center justify-center h-64">
-                  <Package className="w-24 h-24 text-blue-400" />
+                <div className="bg-gradient-to-br from-red-100 to-rose-100 rounded-xl p-6 flex items-center justify-center h-64">
+                  <Package className="w-24 h-24 text-red-400" />
                 </div>
               )}
 
@@ -38,7 +39,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                     {producto.nombre}
                   </DialogTitle>
                   {producto.categoria && (
-                    <Badge className="w-fit bg-blue-600 text-white">
+                    <Badge className="w-fit bg-red-600 text-white">
                       {producto.categoria}
                     </Badge>
                   )}
@@ -56,7 +57,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
             <div className="space-y-6">
               <div>
                 <h3 className="font-semibold text-slate-800 mb-2 flex items-center gap-2">
-                  <Pill className="w-5 h-5 text-blue-600" />
+                  <Pill className="w-5 h-5 text-red-600" />
                   Descripción / Composición
                 </h3>
                 <p className="text-slate-600 leading-relaxed">
@@ -72,7 +73,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                       <Badge 
                         key={idx}
                         variant="outline"
-                        className="bg-green-50 text-green-700 border-green-200"
+                        className="bg-red-50 text-red-700 border-red-200"
                       >
                         {especie}
                       </Badge>
@@ -84,7 +85,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
               {producto.paises && producto.paises.length > 0 && (
                 <div>
                   <h3 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-blue-600" />
+                    <MapPin className="w-5 h-5 text-red-600" />
                     Disponibilidad por País
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -92,7 +93,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                       <Badge 
                         key={idx}
                         variant="outline"
-                        className="bg-blue-50 text-blue-700 border-blue-200"
+                        className="bg-red-50 text-red-700 border-red-200"
                       >
                         {pais}
                       </Badge>
