@@ -33,9 +33,9 @@ export default function Home() {
           >
             <div className="inline-block mb-6">
               <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/d7dc605ce_Bimeda-logotipoPNG.png"
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"
                 alt="Bimeda"
-                className="h-24 mx-auto filter brightness-0 invert"
+                className="h-20 md:h-24 mx-auto"
               />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">

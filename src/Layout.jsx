@@ -86,9 +86,16 @@ export default function Layout({ children, currentPageName }) {
               </SidebarGroupContent>
             </SidebarGroup>
 
-            <div className="mt-6 mx-3 p-4 bg-gradient-to-br from-red-600 to-red-700 rounded-xl text-white">
-              <p className="text-sm font-medium mb-1">Laboratorio Veterinario</p>
-              <p className="text-xs opacity-90">Productos de calidad para el cuidado animal</p>
+            <div className="mt-6 mx-3 p-4 bg-gradient-to-br from-red-600 to-red-700 rounded-xl text-white overflow-hidden relative">
+              <div className="relative z-10">
+                <p className="text-sm font-medium mb-1">Laboratorio Veterinario</p>
+                <p className="text-xs opacity-90">Productos de calidad para el cuidado animal</p>
+              </div>
+              <img 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"
+                alt="Bimeda"
+                className="absolute bottom-2 right-2 h-6 opacity-30"
+              />
             </div>
           </SidebarContent>
         </Sidebar>

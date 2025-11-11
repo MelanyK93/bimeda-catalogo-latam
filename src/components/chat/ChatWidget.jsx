@@ -112,13 +112,11 @@ export default function ChatWidget() {
               <CardHeader className="bg-gradient-to-r from-red-600 to-red-700 text-white p-4 border-b-0">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center">
-                      <MessageCircle className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-base">Asistente Bimeda</CardTitle>
-                      <p className="text-xs text-red-100">En línea</p>
-                    </div>
+                    <img 
+                      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"
+                      alt="Bimeda"
+                      className="h-8 object-contain"
+                    />
                   </div>
                   <Button
                     variant="ghost"
@@ -129,6 +127,7 @@ export default function ChatWidget() {
                     <X className="h-5 w-5" />
                   </Button>
                 </div>
+                <p className="text-xs text-red-100 mt-2">Asistente Virtual • En línea</p>
               </CardHeader>
 
               <CardContent className="p-0">
