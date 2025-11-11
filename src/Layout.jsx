@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Home, BookOpen, Search } from "lucide-react";
+import { Home, BookOpen, Search, Settings } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -31,6 +31,11 @@ const navigationItems = [
     title: "Búsqueda Avanzada",
     url: createPageUrl("Busqueda"),
     icon: Search,
+  },
+  {
+    title: "Administrar Productos",
+    url: createPageUrl("Admin"),
+    icon: Settings,
   },
 ];
 
