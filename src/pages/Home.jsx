@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Package, Search, Globe } from "lucide-react";
+import { ArrowRight, Package, Search, Globe, FileDown } from "lucide-react";
 import { motion } from "framer-motion";
 
 const especies = [
@@ -58,6 +58,16 @@ export default function Home() {
                   Búsqueda Avanzada
                 </Button>
               </Link>
+            </div>
+            <div className="mt-6 flex justify-center">
+              <Button 
+                size="lg"
+                onClick={() => window.open('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970ff46654295c6f5daf58c/promocion-del-mes.pdf', '_blank')}
+                className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-xl text-lg px-8 py-6"
+              >
+                <FileDown className="w-5 h-5 mr-2" />
+                Promoción del Mes
+              </Button>
             </div>
           </motion.div>
         </div>
