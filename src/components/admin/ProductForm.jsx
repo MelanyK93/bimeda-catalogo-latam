@@ -14,7 +14,7 @@ import MaterialesRegion from "./MaterialesRegion";
 
 const ESPECIES = ["Bovinos", "Equinos", "Porcinos", "Ovinos", "Caprinos", "Caninos", "Felinos", "Aves", "Pollos", "Pavos", "Camélidos", "Lechones", "Terneros", "Bezerros", "Conejos", "Hamster", "Hurones", "Cuyos"];
 const CATEGORIAS = ["Antibióticos", "Antiinflamatorios", "Desparasitantes", "Endectocida", "Ectoparasiticida", "Vitaminas y Minerales", "Hormonales", "Intramamarios", "Reconstituyentes y Rehidratantes", "Desinfectante - Bioseguridad", "Control ambiental", "Condroprotector", "Nutracéuticos", "Antisépticos"];
-const PAISES = ["México", "Guatemala", "Argentina", "Bolivia", "Colombia", "Ecuador", "Paraguay", "Perú", "Uruguay", "Venezuela", "Brasil"];
+const PAISES = ["México", "Guatemala", "El Salvador", "Honduras", "Nicaragua", "Costa Rica", "Panamá", "Argentina", "Bolivia", "Colombia", "Ecuador", "Paraguay", "Perú", "Uruguay", "Venezuela", "Brasil"];
 
 export default function ProductForm({ producto, onSave, onCancel }) {
   const [formData, setFormData] = useState(producto || {
