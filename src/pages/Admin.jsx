@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -23,7 +22,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Plus, Search, Edit, Trash2, Package } from "lucide-react";
+import { Plus, Search, Edit, Trash2, Package, FileDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -113,16 +112,26 @@ export default function Admin() {
             </p>
           </div>
           {!showForm && (
-            <Button
-              onClick={() => {
-                setEditingProduct(null);
-                setShowForm(true);
-              }}
-              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-lg"
-            >
-              <Plus className="w-5 h-5 mr-2" />
-              Nuevo Producto
-            </Button>
+            <div className="flex gap-3">
+              <Button
+                onClick={() => window.open('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970ff46654295c6f5daf58c/promocion-del-mes.pdf', '_blank')}
+                variant="outline"
+                className="border-2 border-amber-500 text-amber-700 hover:bg-amber-50 shadow-lg"
+              >
+                <FileDown className="w-5 h-5 mr-2" />
+                Promoción del Mes
+              </Button>
+              <Button
+                onClick={() => {
+                  setEditingProduct(null);
+                  setShowForm(true);
+                }}
+                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 shadow-lg"
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Nuevo Producto
+              </Button>
+            </div>
           )}
         </div>
 
