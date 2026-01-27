@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
@@ -30,7 +29,7 @@ export default function Busqueda() {
 
   const especies = ["Bovinos", "Equinos", "Porcinos", "Ovinos", "Caprinos", "Caninos", "Felinos", "Aves"];
   const categorias = ["Antibióticos", "Antiinflamatorios", "Desparasitantes", "Vitaminas y Minerales", "Hormonales"];
-  const paises = ["México", "Brasil", "Argentina", "Colombia", "Perú", "Ecuador", "Uruguay"];
+  const paises = ["México", "Guatemala", "El Salvador", "Nicaragua", "Panamá", "Costa Rica", "Honduras", "Brasil", "Argentina", "Colombia", "Perú", "Ecuador", "Uruguay"];
 
   const toggleSelection = (item, selectedArray, setSelectedArray) => {
     if (selectedArray.includes(item)) {
