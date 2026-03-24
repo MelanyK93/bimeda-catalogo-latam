@@ -60,14 +60,15 @@ export default function Home() {
               </Link>
             </div>
             <div className="mt-6 flex justify-center">
-              <Button 
-                size="lg"
-                onClick={() => window.open('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6970ff46654295c6f5daf58c/promocion-del-mes.pdf', '_blank')}
-                className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-xl text-lg px-8 py-6"
-              >
-                <FileDown className="w-5 h-5 mr-2" />
-                Promoción del Mes
-              </Button>
+              <Link to={createPageUrl("DescargaCatalogo")}>
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-xl text-lg px-8 py-6"
+                >
+                  <FileDown className="w-5 h-5 mr-2" />
+                  Descargar Catálogo por País
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
