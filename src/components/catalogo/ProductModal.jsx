@@ -21,7 +21,7 @@ const REGIONES = [
 
 const TIPOS_MATERIAL = [
   { key: "ficha_tecnica", label: "Ficha Técnica", icon: FileText },
-  { key: "publicidad_whatsapp", label: "Publicidad WhatsApp", icon: ImageIcon },
+  { key: "publicidad_whatsapp", label: "Infografía", icon: ImageIcon },
   { key: "flyer", label: "Flyer", icon: File },
   { key: "logotipo", label: "Logotipo", icon: ImageIcon },
 ];
@@ -45,7 +45,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                 <TabsTrigger value="info">Información del Producto</TabsTrigger>
                 <TabsTrigger value="materiales">
                   <Download className="w-4 h-4 mr-2" />
-                  Materiales de Venta
+                  Material de Producto
                 </TabsTrigger>
               </TabsList>
 
