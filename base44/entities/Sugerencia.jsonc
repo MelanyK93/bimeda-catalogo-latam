@@ -1,0 +1,33 @@
+{
+  "name": "Sugerencia",
+  "type": "object",
+  "properties": {
+    "nombre": {
+      "type": "string",
+      "description": "Nombre del usuario"
+    },
+    "mensaje": {
+      "type": "string",
+      "description": "Mensaje o sugerencia"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "Sugerencia",
+        "Comentario",
+        "Reporte de error",
+        "Otro"
+      ],
+      "default": "Sugerencia",
+      "description": "Tipo de mensaje"
+    },
+    "leido": {
+      "type": "boolean",
+      "default": false,
+      "description": "Si el admin ya ley\u00f3 el mensaje"
+    }
+  },
+  "required": [
+    "mensaje"
+  ]
+}

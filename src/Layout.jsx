@@ -16,6 +16,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import ChatWidget from "../components/chat/ChatWidget";
+import BuzonSugerencias from "../components/BuzonSugerencias";
 
 const navigationItems = [
   {
@@ -123,6 +124,7 @@ export default function Layout({ children, currentPageName }) {
         </main>
 
         <ChatWidget />
+        <BuzonSugerencias />
       </div>
     </SidebarProvider>
   );
