@@ -22,7 +22,7 @@ const REGIONES = [
 const TIPOS_MATERIAL = [
   { key: "ficha_tecnica", label: "Ficha Técnica", icon: FileText },
   { key: "publicidad_whatsapp", label: "Infografía", icon: ImageIcon },
-  { key: "flyer", label: "Flyer", icon: File },
+  { key: "flyer", label: "Material Publicitario", icon: File },
   { key: "logotipo", label: "Logotipo", icon: ImageIcon },
 ];
 

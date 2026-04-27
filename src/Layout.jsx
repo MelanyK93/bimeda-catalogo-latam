@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Home, BookOpen, Search, Settings, Share2 } from "lucide-react";
+import { base44 } from "@/api/base44Client";
 import {
   Sidebar,
   SidebarContent,
@@ -18,36 +19,26 @@ import {
 import ChatWidget from "../components/chat/ChatWidget";
 import BuzonSugerencias from "../components/BuzonSugerencias";
 
-const navigationItems = [
-  {
-    title: "Inicio",
-    url: createPageUrl("Home"),
-    icon: Home,
-  },
-  {
-    title: "Catálogo",
-    url: createPageUrl("Catalogo"),
-    icon: BookOpen,
-  },
-  {
-    title: "Búsqueda Avanzada",
-    url: createPageUrl("Busqueda"),
-    icon: Search,
-  },
-  {
-    title: "Redes Sociales",
-    url: createPageUrl("RedesSociales"),
-    icon: Share2,
-  },
-  {
-    title: "Administrar Productos",
-    url: createPageUrl("Admin"),
-    icon: Settings,
-  },
+const baseNavItems = [
+  { title: "Inicio", url: createPageUrl("Home"), icon: Home },
+  { title: "Catálogo", url: createPageUrl("Catalogo"), icon: BookOpen },
+  { title: "Búsqueda Avanzada", url: createPageUrl("Busqueda"), icon: Search },
+  { title: "Redes Sociales", url: createPageUrl("RedesSociales"), icon: Share2 },
 ];
+
+const adminNavItem = { title: "Administrar Productos", url: createPageUrl("Admin"), icon: Settings };
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    base44.auth.me().then(user => {
+      if (user?.role === "admin") setIsAdmin(true);
+    }).catch(() => {});
+  }, []);
+
+  const navigationItems = isAdmin ? [...baseNavItems, adminNavItem] : baseNavItems;
 
   return (
     <SidebarProvider>
