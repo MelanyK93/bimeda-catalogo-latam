@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,13 +7,14 @@ import { Package, MapPin } from "lucide-react";
 export default function ProductCard({ producto, onClick }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3 }}
+      whileHover={{ y: -6, scale: 1.02 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="h-full"
     >
       <Card 
-        className="group cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-red-300 bg-white/90 backdrop-blur-sm overflow-hidden h-full"
+        className="group cursor-pointer hover:shadow-[0_8px_30px_rgba(220,38,38,0.15)] transition-all duration-300 border border-slate-100 hover:border-red-200 bg-white/95 backdrop-blur-sm overflow-hidden h-full rounded-2xl"
         onClick={onClick}
       >
         <div className="relative">

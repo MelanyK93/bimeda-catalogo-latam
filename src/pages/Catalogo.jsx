@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
@@ -69,17 +68,27 @@ export default function Catalogo() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-rose-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
           <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
             Catálogo de Productos
           </h1>
-          <p className="text-slate-600">
+          <p className="text-slate-500">
             Explora nuestra línea completa de productos veterinarios
           </p>
-        </div>
+        </motion.div>
 
         {/* Search and Filters */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 mb-8 border border-slate-200">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+        >
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-md p-6 mb-8 border border-slate-100">
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
             <div className="lg:col-span-2 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
@@ -155,6 +164,8 @@ export default function Catalogo() {
           )}
         </div>
 
+        </motion.div>
+
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-slate-600">
@@ -164,9 +175,9 @@ export default function Catalogo() {
 
         {/* Products Grid */}
         {isLoading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="bg-white rounded-xl h-96 animate-pulse" />
+              <div key={i} className="bg-white rounded-2xl h-96 animate-pulse shadow-sm" />
             ))}
           </div>
         ) : filteredProducts.length === 0 ? (
@@ -181,8 +192,16 @@ export default function Catalogo() {
             </Button>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <AnimatePresence mode="wait">
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.06 } }
+            }}
+          >
+            <AnimatePresence mode="popLayout">
               {filteredProducts.map((producto) => (
                 <ProductCard
                   key={producto.id}
@@ -191,7 +210,7 @@ export default function Catalogo() {
                 />
               ))}
             </AnimatePresence>
-          </div>
+          </motion.div>
         )}
       </div>
 
