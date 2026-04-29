@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Package, Search, Globe, FileDown } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Package, Search, Globe, FileDown, ChevronDown, Zap, Shield, Star } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 const especies = [
   { nombre: "Bovinos", icon: "🐄", color: "from-amber-400 to-orange-500" },
@@ -17,137 +16,298 @@ const especies = [
   { nombre: "Caprinos", icon: "🐐", color: "from-green-400 to-emerald-500" },
 ];
 
+const stats = [
+  { label: "Productos", value: "100+", icon: Package, desc: "disponibles en el catálogo" },
+  { label: "Países", value: "11", icon: Globe, desc: "en Latinoamérica" },
+  { label: "Categorías", value: "14", icon: Star, desc: "de productos especializados" },
+];
+
+const features = [
+  { icon: Zap, title: "Acceso Rápido", desc: "Encuentra cualquier producto en segundos con nuestra búsqueda avanzada." },
+  { icon: Shield, title: "Calidad Garantizada", desc: "Productos veterinarios certificados y avalados por Bimeda." },
+  { icon: Globe, title: "Cobertura Regional", desc: "Materiales y fichas técnicas organizados por país y región." },
+];
+
 export default function Home() {
+  const [activeEspecie, setActiveEspecie] = useState(null);
+  const [countedStats, setCountedStats] = useState([0, 0, 0]);
+
+  useEffect(() => {
+    const timers = stats.map((stat, i) => {
+      const target = parseInt(stat.value);
+      if (isNaN(target)) return null;
+      let start = 0;
+      const step = Math.ceil(target / 40);
+      const interval = setInterval(() => {
+        start += step;
+        if (start >= target) {
+          setCountedStats(prev => { const n = [...prev]; n[i] = target; return n; });
+          clearInterval(interval);
+        } else {
+          setCountedStats(prev => { const n = [...prev]; n[i] = start; return n; });
+        }
+      }, 30);
+      return interval;
+    });
+    return () => timers.forEach(t => t && clearInterval(t));
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-rose-50">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PC9nPjwvc3ZnPg==')] opacity-10"></div>
-        
-        <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 relative">
+    <div className="min-h-screen bg-white overflow-x-hidden">
+
+      {/* ── HERO ── */}
+      <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-red-700 via-red-600 to-rose-700">
+        {/* Animated background blobs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-white/5 blur-3xl"
+            animate={{ scale: [1, 1.15, 1], rotate: [0, 20, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full bg-rose-900/30 blur-3xl"
+            animate={{ scale: [1, 1.2, 1], rotate: [0, -15, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-red-800/20 blur-3xl"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
+          {/* Grid overlay */}
+          <div className="absolute inset-0 opacity-[0.04]" style={{
+            backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+            backgroundSize: "60px 60px"
+          }} />
+        </div>
+
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <img
+              src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"
+              alt="Bimeda"
+              className="h-16 md:h-20 mx-auto drop-shadow-2xl"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium tracking-wide">
+              Catálogo Digital de Productos Veterinarios
+            </span>
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-5 leading-tight tracking-tight">
+              Todo lo que<br />
+              <span className="text-amber-300">necesitas,</span><br />
+              en un solo lugar.
+            </h1>
+            <p className="text-lg md:text-xl text-red-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Accede a fichas técnicas, materiales de apoyo y información detallada de todos nuestros productos para Latinoamérica.
+            </p>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
-            <div className="inline-block mb-6">
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"
-                alt="Bimeda"
-                className="h-20 md:h-24 mx-auto"
-              />
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              Catálogo Digital
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-red-100 max-w-3xl mx-auto">
-              Productos veterinarios de calidad para distribuidores y vendedores
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to={createPageUrl("Catalogo")}>
-                <Button size="lg" className="bg-white text-red-600 hover:bg-red-50 shadow-xl text-lg px-8 py-6">
-                  <Package className="w-5 h-5 mr-2" />
-                  Ver Catálogo Completo
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <Link to={createPageUrl("Busqueda")}>
-                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/20 text-lg px-8 py-6">
-                  <Search className="w-5 h-5 mr-2" />
-                  Búsqueda Avanzada
-                </Button>
-              </Link>
-            </div>
-            <div className="mt-6 flex justify-center">
-              <Link to={createPageUrl("DescargaCatalogo")}>
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-xl text-lg px-8 py-6"
-                >
-                  <FileDown className="w-5 h-5 mr-2" />
-                  Descargar Catálogo por País
-                </Button>
-              </Link>
-            </div>
+            <Link to={createPageUrl("Catalogo")}>
+              <Button size="lg" className="bg-white text-red-600 hover:bg-amber-50 shadow-2xl text-base font-bold px-8 py-6 rounded-2xl group">
+                <Package className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                Ver Catálogo
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Link to={createPageUrl("Busqueda")}>
+              <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/25 hover:bg-white/20 text-base font-bold px-8 py-6 rounded-2xl">
+                <Search className="w-5 h-5 mr-2" />
+                Búsqueda Avanzada
+              </Button>
+            </Link>
+            <Link to={createPageUrl("DescargaCatalogo")}>
+              <Button size="lg" className="bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base px-8 py-6 rounded-2xl shadow-xl">
+                <FileDown className="w-5 h-5 mr-2" />
+                Descargar por País
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Stats inline */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex justify-center gap-10 md:gap-20"
+          >
+            {stats.map((stat, i) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-3xl md:text-4xl font-black text-white">
+                  {countedStats[i]}{stat.value.includes("+") ? "+" : ""}
+                </p>
+                <p className="text-xs md:text-sm text-red-200 mt-1 font-medium">{stat.label}</p>
+              </div>
+            ))}
           </motion.div>
         </div>
 
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <ChevronDown className="w-8 h-8 text-white/50" />
+        </motion.div>
+
+        {/* Wave */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="rgb(248, 250, 252)"/>
+          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 80L480 40L960 60L1440 20V80H0Z" fill="white"/>
           </svg>
         </div>
-      </div>
+      </section>
 
-      {/* Especies Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-3">
-              Productos por Especie
+      {/* ── FEATURES ── */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-14"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-3">
+              Diseñado para tu equipo de ventas
             </h2>
-            <p className="text-slate-600 text-lg">
-              Encuentra productos específicos para cada tipo de animal
+            <p className="text-slate-500 text-lg max-w-xl mx-auto">
+              Toda la información que necesitas, organizada y al alcance de un clic.
             </p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="group p-8 rounded-3xl border-2 border-slate-100 hover:border-red-200 hover:shadow-xl transition-all duration-300 bg-white"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <f.icon className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800 mb-2">{f.title}</h3>
+                <p className="text-slate-500 leading-relaxed">{f.desc}</p>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
-            {especies.map((especie, index) => (
+      {/* ── ESPECIES ── */}
+      <section className="py-20 px-6 bg-slate-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-3">
+              Explora por Especie
+            </h2>
+            <p className="text-slate-500 text-lg">
+              Selecciona una especie para ver los productos indicados
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-5">
+            {especies.map((especie, i) => (
               <motion.div
                 key={especie.nombre}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06, duration: 0.4 }}
+                whileHover={{ y: -6 }}
               >
                 <Link to={`${createPageUrl("Catalogo")}?especie=${especie.nombre}`}>
-                  <Card className="group hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-red-200 bg-white/80 backdrop-blur-sm overflow-hidden">
-                    <CardContent className="p-6 text-center">
-                      <div className={`w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${especie.color} flex items-center justify-center text-4xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="relative group cursor-pointer rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${especie.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                    <div className="p-6 text-center">
+                      <div className={`w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${especie.color} flex items-center justify-center text-3xl md:text-4xl shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                         {especie.icon}
                       </div>
-                      <h3 className="font-bold text-lg text-slate-800 group-hover:text-red-600 transition-colors">
+                      <h3 className="font-bold text-base md:text-lg text-slate-800 group-hover:text-red-600 transition-colors">
                         {especie.nombre}
                       </h3>
-                    </CardContent>
-                  </Card>
+                      <div className="mt-2 flex items-center justify-center gap-1 text-xs text-slate-400 group-hover:text-red-500 transition-colors">
+                        <span>Ver productos</span>
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
                 </Link>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Stats Cards */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-gradient-to-br from-red-600 to-red-700 text-white border-0 shadow-xl">
-              <CardContent className="p-6">
-                <Package className="w-12 h-12 mb-3 opacity-80" />
-                <h3 className="text-3xl font-bold mb-1">100+</h3>
-                <p className="text-red-100">Productos disponibles</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-gradient-to-br from-rose-600 to-rose-700 text-white border-0 shadow-xl">
-              <CardContent className="p-6">
-                <Globe className="w-12 h-12 mb-3 opacity-80" />
-                <h3 className="text-3xl font-bold mb-1">11</h3>
-                <p className="text-rose-100">Países en Latinoamérica</p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-gradient-to-br from-red-700 to-red-800 text-white border-0 shadow-xl">
-              <CardContent className="p-6">
-                <Search className="w-12 h-12 mb-3 opacity-80" />
-                <h3 className="text-3xl font-bold mb-1">14</h3>
-                <p className="text-red-100">Categorías de productos</p>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.div>
-      </div>
+      {/* ── CTA FINAL ── */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-600 via-red-700 to-rose-700 p-10 md:p-16 text-center shadow-2xl"
+          >
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-white/5 blur-2xl" />
+              <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-rose-900/30 blur-2xl" />
+            </div>
+            <div className="relative z-10">
+              <img
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"
+                alt="Bimeda"
+                className="h-10 mx-auto mb-6 opacity-90"
+              />
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
+                ¿Listo para explorar<br />el catálogo completo?
+              </h2>
+              <p className="text-red-100 text-lg mb-8 max-w-xl mx-auto">
+                Accede a toda la información de productos, materiales de apoyo y fichas técnicas por región.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link to={createPageUrl("Catalogo")}>
+                  <Button size="lg" className="bg-white text-red-600 hover:bg-amber-50 font-bold text-base px-10 py-6 rounded-2xl shadow-xl group">
+                    <Package className="w-5 h-5 mr-2" />
+                    Ver Catálogo
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Link to={createPageUrl("DescargaCatalogo")}>
+                  <Button size="lg" className="bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base px-10 py-6 rounded-2xl shadow-xl">
+                    <FileDown className="w-5 h-5 mr-2" />
+                    Descargar por País
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
     </div>
   );
 }
