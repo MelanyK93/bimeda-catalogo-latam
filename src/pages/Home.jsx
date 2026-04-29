@@ -56,7 +56,7 @@ export default function Home() {
     <div className="min-h-screen bg-white overflow-x-hidden">
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-red-700 via-red-600 to-rose-700">
+      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-red-700 via-red-600 to-rose-700">
         {/* Animated background blobs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -81,17 +81,17 @@ export default function Home() {
           }} />
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+        <div className="relative z-10 text-center px-5 max-w-5xl mx-auto py-16 md:py-0">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-8"
+            className="mb-5 md:mb-8"
           >
             <img
               src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"
               alt="Bimeda"
-              className="h-16 md:h-20 mx-auto drop-shadow-2xl"
+              className="h-12 md:h-20 mx-auto drop-shadow-2xl"
             />
           </motion.div>
 
@@ -100,15 +100,15 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <span className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white/90 text-sm font-medium tracking-wide">
+            <span className="inline-block mb-3 md:mb-4 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white/90 text-xs md:text-sm font-medium tracking-wide">
               Catálogo Digital de Productos Veterinarios
             </span>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-5 leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-7xl font-black text-white mb-4 md:mb-5 leading-tight tracking-tight">
               Todo lo que<br />
               <span className="text-amber-300">necesitas,</span><br />
               en un solo lugar.
             </h1>
-            <p className="text-lg md:text-xl text-red-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-red-100 mb-7 md:mb-10 max-w-2xl mx-auto leading-relaxed">
               Accede a fichas técnicas, materiales de apoyo y información detallada de todos nuestros productos para Latinoamérica.
             </p>
           </motion.div>
@@ -117,23 +117,23 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-3 justify-center mb-8 md:mb-12"
           >
             <Link to={createPageUrl("Catalogo")}>
-              <Button size="lg" className="bg-white text-red-600 hover:bg-amber-50 shadow-2xl text-base font-bold px-8 py-6 rounded-2xl group">
-                <Package className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              <Button size="lg" className="w-full sm:w-auto bg-white text-red-600 hover:bg-amber-50 shadow-2xl text-base font-bold px-8 py-5 rounded-2xl group">
+                <Package className="w-5 h-5 mr-2" />
                 Ver Catálogo
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link to={createPageUrl("Busqueda")}>
-              <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/25 hover:bg-white/20 text-base font-bold px-8 py-6 rounded-2xl">
+              <Button size="lg" className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border-2 border-white/25 hover:bg-white/20 text-base font-bold px-8 py-5 rounded-2xl">
                 <Search className="w-5 h-5 mr-2" />
                 Búsqueda Avanzada
               </Button>
             </Link>
             <Link to={createPageUrl("DescargaCatalogo")}>
-              <Button size="lg" className="bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base px-8 py-6 rounded-2xl shadow-xl">
+              <Button size="lg" className="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base px-8 py-5 rounded-2xl shadow-xl">
                 <FileDown className="w-5 h-5 mr-2" />
                 Descargar por País
               </Button>
@@ -145,11 +145,11 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="flex justify-center gap-10 md:gap-20"
+            className="flex justify-center gap-8 md:gap-20"
           >
             {stats.map((stat, i) => (
               <div key={stat.label} className="text-center">
-                <p className="text-3xl md:text-4xl font-black text-white">
+                <p className="text-2xl md:text-4xl font-black text-white">
                   {countedStats[i]}{stat.value.includes("+") ? "+" : ""}
                 </p>
                 <p className="text-xs md:text-sm text-red-200 mt-1 font-medium">{stat.label}</p>
