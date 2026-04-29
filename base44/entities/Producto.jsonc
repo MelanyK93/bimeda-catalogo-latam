@@ -1,0 +1,174 @@
+{
+  "name": "Producto",
+  "type": "object",
+  "properties": {
+    "nombre": {
+      "type": "string",
+      "description": "Nombre del producto"
+    },
+    "descripcion": {
+      "type": "string",
+      "description": "Descripci\u00f3n o composici\u00f3n del producto"
+    },
+    "imagen_url": {
+      "type": "string",
+      "description": "URL de la imagen del producto"
+    },
+    "especies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Bovinos",
+          "Equinos",
+          "Porcinos",
+          "Ovinos",
+          "Caprinos",
+          "Caninos",
+          "Felinos",
+          "Aves",
+          "Pollos",
+          "Pavos",
+          "Cam\u00e9lidos",
+          "Lechones",
+          "Terneros",
+          "Bezerros",
+          "Conejos",
+          "Hamster",
+          "Hurones",
+          "Cuyos"
+        ]
+      },
+      "description": "Especies para las que est\u00e1 indicado el producto"
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "Antibi\u00f3ticos",
+        "Antiinflamatorios",
+        "Desparasitantes",
+        "Endectocida",
+        "Ectoparasiticida",
+        "Vitaminas y Minerales",
+        "Hormonales",
+        "Intramamarios",
+        "Reconstituyentes y Rehidratantes",
+        "Desinfectante - Bioseguridad",
+        "Control ambiental",
+        "Condroprotector",
+        "Nutrac\u00e9uticos",
+        "Antis\u00e9pticos"
+      ],
+      "description": "Categor\u00eda del producto"
+    },
+    "paises": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "M\u00e9xico",
+          "Guatemala",
+          "El Salvador",
+          "Honduras",
+          "Nicaragua",
+          "Costa Rica",
+          "Panam\u00e1",
+          "Argentina",
+          "Bolivia",
+          "Colombia",
+          "Ecuador",
+          "Paraguay",
+          "Per\u00fa",
+          "Uruguay",
+          "Venezuela",
+          "Brasil"
+        ]
+      },
+      "description": "Pa\u00edses donde est\u00e1 disponible el producto"
+    },
+    "presentacion": {
+      "type": "string",
+      "description": "Presentaci\u00f3n del producto (inyectable, oral, pasta, etc.)"
+    },
+    "ficha_tecnica": {
+      "type": "string",
+      "description": "Informaci\u00f3n t\u00e9cnica adicional del producto"
+    },
+    "materiales_mexico": {
+      "type": "object",
+      "properties": {
+        "ficha_tecnica": {
+          "type": "string"
+        },
+        "flyer": {
+          "type": "string"
+        },
+        "material_apoyo": {
+          "type": "string"
+        },
+        "logotipo": {
+          "type": "string"
+        }
+      },
+      "description": "Materiales de producto para M\u00e9xico"
+    },
+    "materiales_camcar": {
+      "type": "object",
+      "properties": {
+        "ficha_tecnica": {
+          "type": "string"
+        },
+        "flyer": {
+          "type": "string"
+        },
+        "material_apoyo": {
+          "type": "string"
+        },
+        "logotipo": {
+          "type": "string"
+        }
+      },
+      "description": "Materiales de producto para CAMCAR"
+    },
+    "materiales_suramerica": {
+      "type": "object",
+      "properties": {
+        "ficha_tecnica": {
+          "type": "string"
+        },
+        "flyer": {
+          "type": "string"
+        },
+        "material_apoyo": {
+          "type": "string"
+        },
+        "logotipo": {
+          "type": "string"
+        }
+      },
+      "description": "Materiales de producto para Suram\u00e9rica"
+    },
+    "materiales_brasil": {
+      "type": "object",
+      "properties": {
+        "ficha_tecnica": {
+          "type": "string"
+        },
+        "flyer": {
+          "type": "string"
+        },
+        "material_apoyo": {
+          "type": "string"
+        },
+        "logotipo": {
+          "type": "string"
+        }
+      },
+      "description": "Materiales de producto para Brasil"
+    }
+  },
+  "required": [
+    "nombre",
+    "descripcion"
+  ]
+}
