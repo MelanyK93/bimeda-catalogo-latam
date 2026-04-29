@@ -8,7 +8,6 @@ import { toast } from "sonner";
 
 const TIPOS_ARCHIVO = [
   { key: "ficha_tecnica", label: "Ficha Técnica", icon: FileText, accept: ".pdf,.doc,.docx" },
-  { key: "publicidad_whatsapp", label: "Infografía", icon: Image, accept: "image/*" },
   { key: "flyer", label: "Material Publicitario (flyers, lonas, folletos, etc.)", icon: File, accept: ".pdf,image/*" },
   { key: "logotipo", label: "Logotipo Producto", icon: Image, accept: "image/*" },
 ];
