@@ -181,6 +181,72 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── PRODUCTOS RECIENTES ── */}
+      {productosRecientes.length > 0 && (
+        <section className="py-20 px-6 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-between mb-10"
+            >
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Clock className="w-5 h-5 text-red-500" />
+                  <span className="text-sm font-semibold text-red-500 uppercase tracking-wider">Actualizados recientemente</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-800">Últimas actualizaciones</h2>
+              </div>
+              <Link to={createPageUrl("Catalogo")} className="hidden sm:block">
+                <Button variant="outline" className="rounded-xl border-2 border-red-200 text-red-600 hover:bg-red-50 font-semibold">
+                  Ver todos <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </Link>
+            </motion.div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+              {productosRecientes.map((producto, i) => (
+                <motion.div
+                  key={producto.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.07, duration: 0.4 }}
+                  whileHover={{ y: -4 }}
+                  onClick={() => window.location.href = createPageUrl("Catalogo")}
+                  className="group cursor-pointer bg-white rounded-2xl border-2 border-slate-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 overflow-hidden"
+                >
+                  <div className="aspect-square bg-slate-50 overflow-hidden">
+                    {producto.imagen_url ? (
+                      <img src={producto.imagen_url} alt={producto.nombre} className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <Package className="w-10 h-10 text-slate-300" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <p className="text-xs font-bold text-slate-800 leading-tight line-clamp-2 group-hover:text-red-600 transition-colors">{producto.nombre}</p>
+                    {producto.categoria && (
+                      <span className="inline-block mt-1 text-[10px] text-slate-400 bg-slate-100 rounded-full px-2 py-0.5 truncate max-w-full">{producto.categoria}</span>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-6 text-center sm:hidden">
+              <Link to={createPageUrl("Catalogo")}>
+                <Button variant="outline" className="rounded-xl border-2 border-red-200 text-red-600 hover:bg-red-50 font-semibold">
+                  Ver todos <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── FEATURES ── */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -268,72 +334,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ── PRODUCTOS RECIENTES ── */}
-      {productosRecientes.length > 0 && (
-        <section className="py-20 px-6 bg-white">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center justify-between mb-10"
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <Clock className="w-5 h-5 text-red-500" />
-                  <span className="text-sm font-semibold text-red-500 uppercase tracking-wider">Actualizados recientemente</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-800">Últimas actualizaciones</h2>
-              </div>
-              <Link to={createPageUrl("Catalogo")} className="hidden sm:block">
-                <Button variant="outline" className="rounded-xl border-2 border-red-200 text-red-600 hover:bg-red-50 font-semibold">
-                  Ver todos <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              </Link>
-            </motion.div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-              {productosRecientes.map((producto, i) => (
-                <motion.div
-                  key={producto.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07, duration: 0.4 }}
-                  whileHover={{ y: -4 }}
-                  onClick={() => window.location.href = createPageUrl("Catalogo")}
-                  className="group cursor-pointer bg-white rounded-2xl border-2 border-slate-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 overflow-hidden"
-                >
-                  <div className="aspect-square bg-slate-50 overflow-hidden">
-                    {producto.imagen_url ? (
-                      <img src={producto.imagen_url} alt={producto.nombre} className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Package className="w-10 h-10 text-slate-300" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-3">
-                    <p className="text-xs font-bold text-slate-800 leading-tight line-clamp-2 group-hover:text-red-600 transition-colors">{producto.nombre}</p>
-                    {producto.categoria && (
-                      <span className="inline-block mt-1 text-[10px] text-slate-400 bg-slate-100 rounded-full px-2 py-0.5 truncate max-w-full">{producto.categoria}</span>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-6 text-center sm:hidden">
-              <Link to={createPageUrl("Catalogo")}>
-                <Button variant="outline" className="rounded-xl border-2 border-red-200 text-red-600 hover:bg-red-50 font-semibold">
-                  Ver todos <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ── CTA FINAL ── */}
       <section className="py-24 px-6 bg-white">
