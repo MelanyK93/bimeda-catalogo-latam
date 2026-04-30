@@ -278,7 +278,7 @@ export default function ProductForm({ producto, onSave, onCancel }) {
             <TabsContent value="materiales" className="space-y-6">
               <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="text-sm text-blue-800">
-                  <strong>Materiales de Apoyo para Ventas:</strong> Sube fichas técnicas, presentaciones, infografías y logotipos por región. También puedes vincular una carpeta externa con material publicitario.
+                  <strong>Material de producto:</strong> Sube fichas técnicas, presentaciones, infografías y logotipos por región. También puedes vincular una carpeta externa con material publicitario.
                 </p>
               </div>
 
