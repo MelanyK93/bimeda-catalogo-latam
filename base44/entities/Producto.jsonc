@@ -94,16 +94,20 @@
       "type": "string",
       "description": "Informaci\u00f3n t\u00e9cnica adicional del producto"
     },
+    "link_material_publicitario": {
+      "type": "string",
+      "description": "Link externo a la carpeta de material publicitario (lonas, flyers, banners, etc.)"
+    },
     "materiales_mexico": {
       "type": "object",
       "properties": {
         "ficha_tecnica": {
           "type": "string"
         },
-        "flyer": {
+        "presentacion": {
           "type": "string"
         },
-        "material_apoyo": {
+        "infografia": {
           "type": "string"
         },
         "logotipo": {
@@ -118,10 +122,10 @@
         "ficha_tecnica": {
           "type": "string"
         },
-        "flyer": {
+        "presentacion": {
           "type": "string"
         },
-        "material_apoyo": {
+        "infografia": {
           "type": "string"
         },
         "logotipo": {
@@ -136,10 +140,10 @@
         "ficha_tecnica": {
           "type": "string"
         },
-        "flyer": {
+        "presentacion": {
           "type": "string"
         },
-        "material_apoyo": {
+        "infografia": {
           "type": "string"
         },
         "logotipo": {
@@ -154,10 +158,10 @@
         "ficha_tecnica": {
           "type": "string"
         },
-        "flyer": {
+        "presentacion": {
           "type": "string"
         },
-        "material_apoyo": {
+        "infografia": {
           "type": "string"
         },
         "logotipo": {

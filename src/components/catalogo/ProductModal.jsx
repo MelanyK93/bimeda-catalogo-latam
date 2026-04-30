@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Package, MapPin, Pill, Syringe, Download, FileText, Image as ImageIcon, File } from "lucide-react";
+import { Package, MapPin, Pill, Syringe, Download, FileText, Image as ImageIcon, File, ExternalLink } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,8 +21,8 @@ const REGIONES = [
 
 const TIPOS_MATERIAL = [
   { key: "ficha_tecnica", label: "Ficha Técnica", icon: FileText },
-  { key: "flyer", label: "Material Publicitario", icon: File },
-  { key: "material_apoyo", label: "Material de Apoyo", icon: FileText },
+  { key: "presentacion", label: "Presentación", icon: File },
+  { key: "infografia", label: "Infografía", icon: FileText },
   { key: "logotipo", label: "Logotipo", icon: ImageIcon },
 ];
 
@@ -206,7 +206,23 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                   </div>
                 )}
 
-                <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                {producto.link_material_publicitario && (
+                  <div className="mt-6">
+                    <a
+                      href={producto.link_material_publicitario}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button className="w-full flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold rounded-xl shadow-lg transition-all duration-200 group">
+                        <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                        Material Publicitario (lonas, flyers, banners...)
+                        <ExternalLink className="w-4 h-4 opacity-70" />
+                      </button>
+                    </a>
+                  </div>
+                )}
+
+                <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-sm text-blue-800">
                     <strong>💡 Tip:</strong> Haz clic en cualquier material para descargarlo. Los materiales están organizados por región para tu comodidad.
                   </p>

@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { X, Upload, Loader2, Save, Image as ImageIcon, FileText } from "lucide-react";
+import { X, Upload, Loader2, Save, Image as ImageIcon, FileText, Link } from "lucide-react";
 import { toast } from "sonner";
 import MaterialesRegion from "./MaterialesRegion";
 
@@ -29,7 +29,8 @@ export default function ProductForm({ producto, onSave, onCancel }) {
     materiales_mexico: {},
     materiales_camcar: {},
     materiales_suramerica: {},
-    materiales_brasil: {}
+    materiales_brasil: {},
+    link_material_publicitario: ""
   });
   
   const [uploading, setUploading] = useState(false);
@@ -277,8 +278,23 @@ export default function ProductForm({ producto, onSave, onCancel }) {
             <TabsContent value="materiales" className="space-y-6">
               <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="text-sm text-blue-800">
-                  <strong>Materiales de Apoyo para Ventas:</strong> Sube fichas técnicas, publicidad para WhatsApp, flyers y logotipos por región para que tu equipo de ventas tenga acceso rápido a los materiales.
+                  <strong>Materiales de Apoyo para Ventas:</strong> Sube fichas técnicas, presentaciones, infografías y logotipos por región. También puedes vincular una carpeta externa con material publicitario.
                 </p>
+              </div>
+
+              {/* Link Material Publicitario */}
+              <div className="p-4 border-2 border-amber-200 bg-amber-50 rounded-xl space-y-2">
+                <Label className="text-sm font-semibold text-amber-800 flex items-center gap-2">
+                  <Link className="w-4 h-4" />
+                  Link de Material Publicitario (lonas, flyers, banners, etc.)
+                </Label>
+                <Input
+                  value={formData.link_material_publicitario || ""}
+                  onChange={(e) => handleChange('link_material_publicitario', e.target.value)}
+                  placeholder="https://drive.google.com/drive/folders/..."
+                  className="bg-white border-amber-300 focus:border-amber-500"
+                />
+                <p className="text-xs text-amber-700">Pega aquí el link de la carpeta de Google Drive, Dropbox u otro servicio donde están los materiales publicitarios.</p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
