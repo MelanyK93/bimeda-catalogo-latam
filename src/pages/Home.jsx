@@ -214,7 +214,7 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07, duration: 0.4 }}
                   whileHover={{ y: -4 }}
-                  onClick={() => window.location.href = createPageUrl("Catalogo")}
+                  onClick={() => window.location.href = `${createPageUrl("Catalogo")}?producto=${producto.id}`}
                   className="group cursor-pointer bg-white rounded-2xl border-2 border-slate-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 overflow-hidden"
                 >
                   <div className="aspect-square bg-slate-50 overflow-hidden">

@@ -21,6 +21,7 @@ export default function Catalogo() {
 
   const urlParams = new URLSearchParams(window.location.search);
   const especieParam = urlParams.get("especie");
+  const productoParam = urlParams.get("producto");
 
   useEffect(() => {
     if (especieParam) {
@@ -33,6 +34,16 @@ export default function Catalogo() {
     queryFn: () => base44.entities.Producto.list('-created_date'),
     initialData: [],
   });
+
+  useEffect(() => {
+    if (productoParam && productos.length > 0) {
+      const found = productos.find(p => p.id === productoParam);
+      if (found) {
+        setSelectedProduct(found);
+        setShowModal(true);
+      }
+    }
+  }, [productoParam, productos]);
 
   const filteredProducts = productos.filter(producto => {
     const matchesSearch = producto.nombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
