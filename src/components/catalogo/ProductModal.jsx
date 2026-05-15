@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Package, MapPin, Pill, Syringe, Download, FileText, Image as ImageIcon, File, ExternalLink } from "lucide-react";
+import ProductGallery from "./ProductGallery";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -51,14 +52,12 @@ export default function ProductModal({ producto, isOpen, onClose }) {
 
               <TabsContent value="info">
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  {producto.imagen_url ? (
-                    <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl p-6 flex items-center justify-center">
-                      <img 
-                        src={producto.imagen_url} 
-                        alt={producto.nombre}
-                        className="max-h-64 object-contain"
-                      />
-                    </div>
+                  {(producto.imagen_url || (producto.galeria_imagenes && producto.galeria_imagenes.length > 0)) ? (
+                    <ProductGallery
+                      imagenPrincipal={producto.imagen_url}
+                      galeria={producto.galeria_imagenes || []}
+                      nombreProducto={producto.nombre}
+                    />
                   ) : (
                     <div className="bg-gradient-to-br from-red-100 to-rose-100 rounded-xl p-6 flex items-center justify-center h-64">
                       <Package className="w-24 h-24 text-red-400" />

@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { X, Upload, Loader2, Save, Image as ImageIcon, FileText, Link } from "lucide-react";
 import { toast } from "sonner";
 import MaterialesRegion from "./MaterialesRegion";
+import GaleriaUploader from "./GaleriaUploader";
 
 const ESPECIES = ["Bovinos", "Equinos", "Porcinos", "Ovinos", "Caprinos", "Caninos", "Felinos", "Aves", "Pollos", "Pavos", "Camélidos", "Lechones", "Terneros", "Bezerros", "Conejos", "Hamster", "Hurones", "Cuyos"];
 const CATEGORIAS = ["Antibióticos", "Antiinflamatorios", "Desparasitantes", "Endectocida", "Ectoparasiticida", "Vitaminas y Minerales", "Hormonales", "Intramamarios", "Reconstituyentes y Rehidratantes", "Desinfectante - Bioseguridad", "Control ambiental", "Condroprotector", "Nutracéuticos", "Antisépticos"];
@@ -26,6 +27,7 @@ export default function ProductForm({ producto, onSave, onCancel }) {
     paises: [],
     presentacion: "",
     ficha_tecnica: "",
+    galeria_imagenes: [],
     materiales_mexico: {},
     materiales_camcar: {},
     materiales_suramerica: {},
@@ -154,6 +156,12 @@ export default function ProductForm({ producto, onSave, onCancel }) {
                   </div>
                 )}
               </div>
+
+              {/* Galería */}
+              <GaleriaUploader
+                imagenes={formData.galeria_imagenes || []}
+                onChange={(value) => handleChange('galeria_imagenes', value)}
+              />
 
               {/* Nombre */}
               <div>

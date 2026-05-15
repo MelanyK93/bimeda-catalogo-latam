@@ -12,7 +12,14 @@
     },
     "imagen_url": {
       "type": "string",
-      "description": "URL de la imagen del producto"
+      "description": "URL de la imagen principal del producto"
+    },
+    "galeria_imagenes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs de im\u00e1genes adicionales del producto (galer\u00eda)"
     },
     "especies": {
       "type": "array",
