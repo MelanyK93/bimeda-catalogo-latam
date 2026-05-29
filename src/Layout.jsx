@@ -32,7 +32,7 @@ const adminNavItem = { title: "Administrar Productos", url: createPageUrl("Admin
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   const [isAdmin, setIsAdmin] = useState(false);
-  const { lang, toggleLang, t } = useLanguage();
+  const { lang, toggleLang, t, langMeta, nextLangMeta } = useLanguage();
 
   useEffect(() => {
     base44.auth.me().then(user => {
@@ -99,14 +99,14 @@ export default function Layout({ children, currentPageName }) {
                 className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-slate-100 to-slate-200 hover:from-red-50 hover:to-rose-100 border border-slate-200 hover:border-red-300 transition-all duration-200 group"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">{lang === "es" ? "🇲🇽" : "🇧🇷"}</span>
+                  <span className="text-lg">{langMeta?.flag}</span>
                   <span className="text-sm font-bold text-slate-700 group-hover:text-red-700">
-                    {lang === "es" ? "Español" : "Português"}
+                    {langMeta?.label}
                   </span>
                 </div>
                 <div className="flex items-center gap-1 bg-white rounded-lg px-2 py-0.5 border border-slate-200 shadow-sm">
                   <span className="text-xs font-semibold text-slate-500">
-                    {lang === "es" ? "PT 🇧🇷" : "ES 🇲🇽"}
+                    {nextLangMeta?.flag} {nextLangMeta?.label}
                   </span>
                 </div>
               </button>

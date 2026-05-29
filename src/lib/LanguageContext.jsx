@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState } from "react";
 
 const translations = {
   es: {
-    // Nav
     nav_home: "Inicio",
     nav_catalog: "Catálogo",
     nav_search: "Búsqueda Avanzada",
@@ -11,8 +10,6 @@ const translations = {
     nav_subtitle: "Catálogo Digital",
     nav_tagline: "Laboratorio Veterinario",
     nav_tagline_sub: "Productos de calidad para el cuidado animal",
-
-    // Home Hero
     hero_badge: "Catálogo Digital de Productos Veterinarios",
     hero_title_1: "Todo lo que",
     hero_title_2: "necesitas,",
@@ -21,21 +18,15 @@ const translations = {
     hero_btn_catalog: "Ver Catálogo",
     hero_btn_search: "Búsqueda Avanzada",
     hero_btn_download: "Descargar por País",
-
-    // Stats
     stat_products: "Productos",
     stat_products_desc: "disponibles en el catálogo",
     stat_countries: "Países",
     stat_countries_desc: "en Latinoamérica",
     stat_categories: "Categorías",
     stat_categories_desc: "de productos especializados",
-
-    // Recent Products
     recent_label: "Actualizados recientemente",
     recent_title: "Últimas actualizaciones",
     recent_view_all: "Ver todos",
-
-    // Features
     features_title: "Diseñado para tu equipo de ventas",
     features_subtitle: "Toda la información que necesitas, organizada y al alcance de un clic.",
     feature_1_title: "Acceso Rápido",
@@ -44,18 +35,12 @@ const translations = {
     feature_2_desc: "Productos veterinarios certificados y avalados por Bimeda.",
     feature_3_title: "Cobertura Regional",
     feature_3_desc: "Materiales y fichas técnicas organizados por país y región.",
-
-    // Species
     species_title: "Explora por Especie",
     species_subtitle: "Selecciona una especie para ver los productos indicados",
     species_view: "Ver productos",
-
-    // CTA
     cta_title: "¿Listo para explorar",
     cta_title_2: "el catálogo completo?",
     cta_subtitle: "Accede a toda la información de productos, materiales de apoyo y fichas técnicas por región.",
-
-    // Catalog page
     catalog_title: "Catálogo de Productos",
     catalog_subtitle: "Explora nuestra línea completa de productos veterinarios",
     catalog_search_placeholder: "Buscar productos...",
@@ -69,8 +54,6 @@ const translations = {
     catalog_clear_filters: "Limpiar filtros",
     catalog_not_found_title: "No se encontraron productos",
     catalog_not_found_sub: "Intenta ajustar los filtros de búsqueda",
-
-    // Search page
     search_title: "Búsqueda Avanzada",
     search_subtitle: "Utiliza filtros múltiples para encontrar productos específicos",
     search_filters: "Filtros",
@@ -86,8 +69,6 @@ const translations = {
     search_not_found_title: "No se encontraron productos",
     search_not_found_sub: "Intenta ajustar los filtros de búsqueda",
     search_clear_all_filters: "Limpiar todos los filtros",
-
-    // Product Modal
     modal_tab_info: "Información del Producto",
     modal_tab_materials: "Material de Producto",
     modal_description: "Descripción / Composición",
@@ -108,7 +89,6 @@ const translations = {
     modal_logotipo: "Logotipo",
   },
   pt: {
-    // Nav
     nav_home: "Início",
     nav_catalog: "Catálogo",
     nav_search: "Busca Avançada",
@@ -117,8 +97,6 @@ const translations = {
     nav_subtitle: "Catálogo Digital",
     nav_tagline: "Laboratório Veterinário",
     nav_tagline_sub: "Produtos de qualidade para o cuidado animal",
-
-    // Home Hero
     hero_badge: "Catálogo Digital de Produtos Veterinários",
     hero_title_1: "Tudo o que",
     hero_title_2: "você precisa,",
@@ -127,21 +105,15 @@ const translations = {
     hero_btn_catalog: "Ver Catálogo",
     hero_btn_search: "Busca Avançada",
     hero_btn_download: "Baixar por País",
-
-    // Stats
     stat_products: "Produtos",
     stat_products_desc: "disponíveis no catálogo",
     stat_countries: "Países",
     stat_countries_desc: "na América Latina",
     stat_categories: "Categorias",
     stat_categories_desc: "de produtos especializados",
-
-    // Recent Products
     recent_label: "Atualizados recentemente",
     recent_title: "Últimas atualizações",
     recent_view_all: "Ver todos",
-
-    // Features
     features_title: "Projetado para sua equipe de vendas",
     features_subtitle: "Todas as informações que você precisa, organizadas e a um clique de distância.",
     feature_1_title: "Acesso Rápido",
@@ -150,18 +122,12 @@ const translations = {
     feature_2_desc: "Produtos veterinários certificados e aprovados pela Bimeda.",
     feature_3_title: "Cobertura Regional",
     feature_3_desc: "Materiais e fichas técnicas organizados por país e região.",
-
-    // Species
     species_title: "Explorar por Espécie",
     species_subtitle: "Selecione uma espécie para ver os produtos indicados",
     species_view: "Ver produtos",
-
-    // CTA
     cta_title: "Pronto para explorar",
     cta_title_2: "o catálogo completo?",
     cta_subtitle: "Acesse todas as informações de produtos, materiais de apoio e fichas técnicas por região.",
-
-    // Catalog page
     catalog_title: "Catálogo de Produtos",
     catalog_subtitle: "Explore nossa linha completa de produtos veterinários",
     catalog_search_placeholder: "Buscar produtos...",
@@ -175,8 +141,6 @@ const translations = {
     catalog_clear_filters: "Limpar filtros",
     catalog_not_found_title: "Nenhum produto encontrado",
     catalog_not_found_sub: "Tente ajustar os filtros de busca",
-
-    // Search page
     search_title: "Busca Avançada",
     search_subtitle: "Use múltiplos filtros para encontrar produtos específicos",
     search_filters: "Filtros",
@@ -192,8 +156,6 @@ const translations = {
     search_not_found_title: "Nenhum produto encontrado",
     search_not_found_sub: "Tente ajustar os filtros de busca",
     search_clear_all_filters: "Limpar todos os filtros",
-
-    // Product Modal
     modal_tab_info: "Informações do Produto",
     modal_tab_materials: "Material do Produto",
     modal_description: "Descrição / Composição",
@@ -213,6 +175,100 @@ const translations = {
     modal_infografia: "Infografia",
     modal_logotipo: "Logotipo",
   },
+  en: {
+    nav_home: "Home",
+    nav_catalog: "Catalog",
+    nav_search: "Advanced Search",
+    nav_social: "Social Media",
+    nav_admin: "Manage Products",
+    nav_subtitle: "Digital Catalog",
+    nav_tagline: "Veterinary Laboratory",
+    nav_tagline_sub: "Quality products for animal care",
+    hero_badge: "Digital Veterinary Product Catalog",
+    hero_title_1: "Everything",
+    hero_title_2: "you need,",
+    hero_title_3: "in one place.",
+    hero_subtitle: "Access technical sheets, support materials and detailed information on all our products for Latin America.",
+    hero_btn_catalog: "View Catalog",
+    hero_btn_search: "Advanced Search",
+    hero_btn_download: "Download by Country",
+    stat_products: "Products",
+    stat_products_desc: "available in the catalog",
+    stat_countries: "Countries",
+    stat_countries_desc: "in Latin America",
+    stat_categories: "Categories",
+    stat_categories_desc: "of specialized products",
+    recent_label: "Recently updated",
+    recent_title: "Latest updates",
+    recent_view_all: "View all",
+    features_title: "Designed for your sales team",
+    features_subtitle: "All the information you need, organized and just a click away.",
+    feature_1_title: "Quick Access",
+    feature_1_desc: "Find any product in seconds with our advanced search.",
+    feature_2_title: "Guaranteed Quality",
+    feature_2_desc: "Veterinary products certified and endorsed by Bimeda.",
+    feature_3_title: "Regional Coverage",
+    feature_3_desc: "Materials and technical sheets organized by country and region.",
+    species_title: "Explore by Species",
+    species_subtitle: "Select a species to see the indicated products",
+    species_view: "View products",
+    cta_title: "Ready to explore",
+    cta_title_2: "the full catalog?",
+    cta_subtitle: "Access all product information, support materials and technical sheets by region.",
+    catalog_title: "Product Catalog",
+    catalog_subtitle: "Explore our complete line of veterinary products",
+    catalog_search_placeholder: "Search products...",
+    catalog_all_species: "All species",
+    catalog_all_categories: "All categories",
+    catalog_all_countries: "All countries",
+    catalog_showing: "Showing",
+    catalog_product: "product",
+    catalog_products: "products",
+    catalog_active_filters: "Active filters:",
+    catalog_clear_filters: "Clear filters",
+    catalog_not_found_title: "No products found",
+    catalog_not_found_sub: "Try adjusting the search filters",
+    search_title: "Advanced Search",
+    search_subtitle: "Use multiple filters to find specific products",
+    search_filters: "Filters",
+    search_clear_all: "Clear all",
+    search_text_label: "Text search",
+    search_placeholder: "Search...",
+    search_species: "Species",
+    search_categories: "Categories",
+    search_countries: "Countries",
+    search_showing: "Showing",
+    search_result: "result",
+    search_results: "results",
+    search_not_found_title: "No products found",
+    search_not_found_sub: "Try adjusting the search filters",
+    search_clear_all_filters: "Clear all filters",
+    modal_tab_info: "Product Information",
+    modal_tab_materials: "Product Materials",
+    modal_description: "Description / Composition",
+    modal_species: "Species",
+    modal_availability: "Availability by Country",
+    modal_tech_info: "Technical Information",
+    modal_no_materials_title: "No materials available",
+    modal_no_materials_sub: "This product has no sales materials uploaded yet.",
+    modal_advertising: "Advertising Materials (banners, flyers...)",
+    modal_tip: "💡 Tip: Click on any material to download it. Materials are organized by region for your convenience.",
+    modal_region_mexico: "Mexico",
+    modal_region_camcar: "CAMCAR",
+    modal_region_sur: "South America",
+    modal_region_brasil: "Brazil",
+    modal_ficha: "Technical Sheet",
+    modal_presentacion: "Presentation",
+    modal_infografia: "Infographic",
+    modal_logotipo: "Logo",
+  },
+};
+
+const LANGS = ["es", "pt", "en"];
+const LANG_META = {
+  es: { flag: "🇲🇽", label: "Español" },
+  pt: { flag: "🇧🇷", label: "Português" },
+  en: { flag: "🇺🇸", label: "English" },
 };
 
 const LanguageContext = createContext(null);
@@ -221,15 +277,16 @@ export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(() => localStorage.getItem("bimeda_lang") || "es");
 
   const toggleLang = () => {
-    const next = lang === "es" ? "pt" : "es";
+    const currentIndex = LANGS.indexOf(lang);
+    const next = LANGS[(currentIndex + 1) % LANGS.length];
     setLang(next);
     localStorage.setItem("bimeda_lang", next);
   };
 
-  const t = (key) => translations[lang][key] ?? key;
+  const t = (key) => translations[lang]?.[key] ?? translations["es"][key] ?? key;
 
   return (
-    <LanguageContext.Provider value={{ lang, toggleLang, t }}>
+    <LanguageContext.Provider value={{ lang, toggleLang, t, langMeta: LANG_META[lang], nextLangMeta: LANG_META[LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]] }}>
       {children}
     </LanguageContext.Provider>
   );
