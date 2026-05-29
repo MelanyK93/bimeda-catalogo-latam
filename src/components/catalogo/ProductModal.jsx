@@ -9,25 +9,27 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Package, MapPin, Pill, Syringe, Download, FileText, Image as ImageIcon, File, ExternalLink } from "lucide-react";
 import ProductGallery from "./ProductGallery";
+import { useLanguage } from "@/lib/LanguageContext";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const REGIONES = [
-  { key: "materiales_mexico", label: "México", color: "bg-red-500" },
-  { key: "materiales_camcar", label: "CAMCAR", color: "bg-rose-500" },
-  { key: "materiales_suramerica", label: "Suramérica", color: "bg-red-600" },
-  { key: "materiales_brasil", label: "Brasil", color: "bg-red-700" },
+  { key: "materiales_mexico", labelKey: "modal_region_mexico", color: "bg-red-500" },
+  { key: "materiales_camcar", labelKey: "modal_region_camcar", color: "bg-rose-500" },
+  { key: "materiales_suramerica", labelKey: "modal_region_sur", color: "bg-red-600" },
+  { key: "materiales_brasil", labelKey: "modal_region_brasil", color: "bg-red-700" },
 ];
 
 const TIPOS_MATERIAL = [
-  { key: "ficha_tecnica", label: "Ficha Técnica", icon: FileText },
-  { key: "presentacion", label: "Presentación", icon: File },
-  { key: "infografia", label: "Infografía", icon: FileText },
-  { key: "logotipo", label: "Logotipo", icon: ImageIcon },
+  { key: "ficha_tecnica", labelKey: "modal_ficha", icon: FileText },
+  { key: "presentacion", labelKey: "modal_presentacion", icon: File },
+  { key: "infografia", labelKey: "modal_infografia", icon: FileText },
+  { key: "logotipo", labelKey: "modal_logotipo", icon: ImageIcon },
 ];
 
 export default function ProductModal({ producto, isOpen, onClose }) {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("info");
 
   if (!producto) return null;

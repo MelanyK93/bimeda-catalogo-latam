@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Home, BookOpen, Search, Settings, Share2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
+import { useLanguage } from "@/lib/LanguageContext";
 import {
   Sidebar,
   SidebarContent,
@@ -31,6 +32,7 @@ const adminNavItem = { title: "Administrar Productos", url: createPageUrl("Admin
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   const [isAdmin, setIsAdmin] = useState(false);
+  const { lang, toggleLang, t } = useLanguage();
 
   useEffect(() => {
     base44.auth.me().then(user => {
@@ -38,7 +40,14 @@ export default function Layout({ children, currentPageName }) {
     }).catch(() => {});
   }, []);
 
-  const navigationItems = isAdmin ? [...baseNavItems, adminNavItem] : baseNavItems;
+  const baseNavItemsTranslated = [
+    { title: t("nav_home"), url: createPageUrl("Home"), icon: Home },
+    { title: t("nav_catalog"), url: createPageUrl("Catalogo"), icon: BookOpen },
+    { title: t("nav_search"), url: createPageUrl("Busqueda"), icon: Search },
+    { title: t("nav_social"), url: createPageUrl("RedesSociales"), icon: Share2 },
+  ];
+  const adminNavItemTranslated = { title: t("nav_admin"), url: createPageUrl("Admin"), icon: Settings };
+  const navigationItems = isAdmin ? [...baseNavItemsTranslated, adminNavItemTranslated] : baseNavItemsTranslated;
 
   return (
     <SidebarProvider>
@@ -52,7 +61,7 @@ export default function Layout({ children, currentPageName }) {
                 className="h-10 object-contain"
               />
             </div>
-            <p className="text-xs text-slate-500 mt-2">Catálogo Digital</p>
+            <p className="text-xs text-slate-500 mt-2">{t("nav_subtitle")}</p>
           </SidebarHeader>
           
           <SidebarContent className="p-3">
@@ -83,10 +92,30 @@ export default function Layout({ children, currentPageName }) {
               </SidebarGroupContent>
             </SidebarGroup>
 
-            <div className="mt-6 mx-3 p-4 bg-gradient-to-br from-red-600 to-red-700 rounded-xl text-white overflow-hidden relative">
+            {/* Language Toggle */}
+            <div className="mx-3 mt-4">
+              <button
+                onClick={toggleLang}
+                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-slate-100 to-slate-200 hover:from-red-50 hover:to-rose-100 border border-slate-200 hover:border-red-300 transition-all duration-200 group"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{lang === "es" ? "🇲🇽" : "🇧🇷"}</span>
+                  <span className="text-sm font-bold text-slate-700 group-hover:text-red-700">
+                    {lang === "es" ? "Español" : "Português"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 bg-white rounded-lg px-2 py-0.5 border border-slate-200 shadow-sm">
+                  <span className="text-xs font-semibold text-slate-500">
+                    {lang === "es" ? "PT 🇧🇷" : "ES 🇲🇽"}
+                  </span>
+                </div>
+              </button>
+            </div>
+
+            <div className="mt-4 mx-3 p-4 bg-gradient-to-br from-red-600 to-red-700 rounded-xl text-white overflow-hidden relative">
               <div className="relative z-10">
-                <p className="text-sm font-medium mb-1">Laboratorio Veterinario</p>
-                <p className="text-xs opacity-90">Productos de calidad para el cuidado animal</p>
+                <p className="text-sm font-medium mb-1">{t("nav_tagline")}</p>
+                <p className="text-xs opacity-90">{t("nav_tagline_sub")}</p>
               </div>
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/691343752dd769d27639030b/956eafb9a_Bimeda_Logo_white-text.png"

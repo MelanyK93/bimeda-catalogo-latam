@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Package, Search, Globe, FileDown, ChevronDown, Zap, Shield, Star, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const especies = [
   { nombre: "Bovinos", icon: "🐄", color: "from-amber-400 to-orange-500" },
@@ -18,18 +19,15 @@ const especies = [
 ];
 
 const stats = [
-  { label: "Productos", value: "100+", icon: Package, desc: "disponibles en el catálogo" },
-  { label: "Países", value: "11", icon: Globe, desc: "en Latinoamérica" },
-  { label: "Categorías", value: "14", icon: Star, desc: "de productos especializados" },
+  { labelKey: "stat_products", value: "100+", icon: Package, descKey: "stat_products_desc" },
+  { labelKey: "stat_countries", value: "11", icon: Globe, descKey: "stat_countries_desc" },
+  { labelKey: "stat_categories", value: "14", icon: Star, descKey: "stat_categories_desc" },
 ];
 
-const features = [
-  { icon: Zap, title: "Acceso Rápido", desc: "Encuentra cualquier producto en segundos con nuestra búsqueda avanzada." },
-  { icon: Shield, title: "Calidad Garantizada", desc: "Productos veterinarios certificados y avalados por Bimeda." },
-  { icon: Globe, title: "Cobertura Regional", desc: "Materiales y fichas técnicas organizados por país y región." },
-];
+const featureIcons = [Zap, Shield, Globe];
 
 export default function Home() {
+  const { t } = useLanguage();
   const [activeEspecie, setActiveEspecie] = useState(null);
   const [countedStats, setCountedStats] = useState([0, 0, 0]);
   const [productosRecientes, setProductosRecientes] = useState([]);
@@ -107,15 +105,15 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <span className="inline-block mb-3 md:mb-4 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white/90 text-xs md:text-sm font-medium tracking-wide">
-              Catálogo Digital de Productos Veterinarios
+              {t("hero_badge")}
             </span>
             <h1 className="text-4xl md:text-7xl font-black text-white mb-4 md:mb-5 leading-tight tracking-tight">
-              Todo lo que<br />
-              <span className="text-amber-300">necesitas,</span><br />
-              en un solo lugar.
+              {t("hero_title_1")}<br />
+              <span className="text-amber-300">{t("hero_title_2")}</span><br />
+              {t("hero_title_3")}
             </h1>
             <p className="text-base md:text-xl text-red-100 mb-7 md:mb-10 max-w-2xl mx-auto leading-relaxed">
-              Accede a fichas técnicas, materiales de apoyo y información detallada de todos nuestros productos para Latinoamérica.
+              {t("hero_subtitle")}
             </p>
           </motion.div>
 
@@ -128,20 +126,20 @@ export default function Home() {
             <Link to={createPageUrl("Catalogo")}>
               <Button size="lg" className="w-full sm:w-auto bg-white text-red-600 hover:bg-amber-50 shadow-2xl text-base font-bold px-8 py-5 rounded-2xl group">
                 <Package className="w-5 h-5 mr-2" />
-                Ver Catálogo
+                {t("hero_btn_catalog")}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link to={createPageUrl("Busqueda")}>
               <Button size="lg" className="w-full sm:w-auto bg-white/10 backdrop-blur-sm text-white border-2 border-white/25 hover:bg-white/20 text-base font-bold px-8 py-5 rounded-2xl">
                 <Search className="w-5 h-5 mr-2" />
-                Búsqueda Avanzada
+                {t("hero_btn_search")}
               </Button>
             </Link>
             <Link to={createPageUrl("DescargaCatalogo")}>
               <Button size="lg" className="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base px-8 py-5 rounded-2xl shadow-xl">
                 <FileDown className="w-5 h-5 mr-2" />
-                Descargar por País
+                {t("hero_btn_download")}
               </Button>
             </Link>
           </motion.div>
@@ -154,11 +152,11 @@ export default function Home() {
             className="flex justify-center gap-8 md:gap-20"
           >
             {stats.map((stat, i) => (
-              <div key={stat.label} className="text-center">
+              <div key={stat.labelKey} className="text-center">
                 <p className="text-2xl md:text-4xl font-black text-white">
                   {countedStats[i]}{stat.value.includes("+") ? "+" : ""}
                 </p>
-                <p className="text-xs md:text-sm text-red-200 mt-1 font-medium">{stat.label}</p>
+                <p className="text-xs md:text-sm text-red-200 mt-1 font-medium">{t(stat.labelKey)}</p>
               </div>
             ))}
           </motion.div>
@@ -194,13 +192,13 @@ export default function Home() {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-5 h-5 text-red-500" />
-                  <span className="text-sm font-semibold text-red-500 uppercase tracking-wider">Actualizados recientemente</span>
+                  <span className="text-sm font-semibold text-red-500 uppercase tracking-wider">{t("recent_label")}</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-800">Últimas actualizaciones</h2>
+                <h2 className="text-3xl md:text-4xl font-black text-slate-800">{t("recent_title")}</h2>
               </div>
               <Link to={createPageUrl("Catalogo")} className="hidden sm:block">
                 <Button variant="outline" className="rounded-xl border-2 border-red-200 text-red-600 hover:bg-red-50 font-semibold">
-                  Ver todos <ArrowRight className="w-4 h-4 ml-1" />
+                  {t("recent_view_all")} <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
             </motion.div>
@@ -239,7 +237,7 @@ export default function Home() {
             <div className="mt-6 text-center sm:hidden">
               <Link to={createPageUrl("Catalogo")}>
                 <Button variant="outline" className="rounded-xl border-2 border-red-200 text-red-600 hover:bg-red-50 font-semibold">
-                  Ver todos <ArrowRight className="w-4 h-4 ml-1" />
+                  {t("recent_view_all")} <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </Link>
             </div>
@@ -258,16 +256,16 @@ export default function Home() {
             className="text-center mb-14"
           >
             <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-3">
-              Diseñado para tu equipo de ventas
+              {t("features_title")}
             </h2>
             <p className="text-slate-500 text-lg max-w-xl mx-auto">
-              Toda la información que necesitas, organizada y al alcance de un clic.
+              {t("features_subtitle")}
             </p>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-8">
-            {features.map((f, i) => (
+            {featureIcons.map((Icon, i) => (
               <motion.div
-                key={f.title}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -275,10 +273,10 @@ export default function Home() {
                 className="group p-8 rounded-3xl border-2 border-slate-100 hover:border-red-200 hover:shadow-xl transition-all duration-300 bg-white"
               >
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <f.icon className="w-7 h-7 text-white" />
+                  <Icon className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-2">{f.title}</h3>
-                <p className="text-slate-500 leading-relaxed">{f.desc}</p>
+                <h3 className="text-xl font-bold text-slate-800 mb-2">{t(`feature_${i+1}_title`)}</h3>
+                <p className="text-slate-500 leading-relaxed">{t(`feature_${i+1}_desc`)}</p>
               </motion.div>
             ))}
           </div>
@@ -295,10 +293,10 @@ export default function Home() {
             className="text-center mb-14"
           >
             <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-3">
-              Explora por Especie
+              {t("species_title")}
             </h2>
             <p className="text-slate-500 text-lg">
-              Selecciona una especie para ver los productos indicados
+              {t("species_subtitle")}
             </p>
           </motion.div>
 
@@ -323,7 +321,7 @@ export default function Home() {
                         {especie.nombre}
                       </h3>
                       <div className="mt-2 flex items-center justify-center gap-1 text-xs text-slate-400 group-hover:text-red-500 transition-colors">
-                        <span>Ver productos</span>
+                        <span>{t("species_view")}</span>
                         <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -355,23 +353,23 @@ export default function Home() {
                 className="h-10 mx-auto mb-6 opacity-90"
               />
               <h2 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
-                ¿Listo para explorar<br />el catálogo completo?
+                {t("cta_title")}<br />{t("cta_title_2")}
               </h2>
               <p className="text-red-100 text-lg mb-8 max-w-xl mx-auto">
-                Accede a toda la información de productos, materiales de apoyo y fichas técnicas por región.
+                {t("cta_subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to={createPageUrl("Catalogo")}>
                   <Button size="lg" className="bg-white text-red-600 hover:bg-amber-50 font-bold text-base px-10 py-6 rounded-2xl shadow-xl group">
                     <Package className="w-5 h-5 mr-2" />
-                    Ver Catálogo
+                    {t("hero_btn_catalog")}
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </Link>
                 <Link to={createPageUrl("DescargaCatalogo")}>
                   <Button size="lg" className="bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base px-10 py-6 rounded-2xl shadow-xl">
                     <FileDown className="w-5 h-5 mr-2" />
-                    Descargar por País
+                    {t("hero_btn_download")}
                   </Button>
                 </Link>
               </div>

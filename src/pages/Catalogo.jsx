@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
+import { useLanguage } from "@/lib/LanguageContext";
 import { useQuery } from "@tanstack/react-query";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,7 @@ import ProductCard from "../components/catalogo/ProductCard";
 import ProductModal from "../components/catalogo/ProductModal";
 
 export default function Catalogo() {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEspecie, setSelectedEspecie] = useState("all");
   const [selectedCategoria, setSelectedCategoria] = useState("all");
@@ -86,10 +88,10 @@ export default function Catalogo() {
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
-            Catálogo de Productos
+            {t("catalog_title")}
           </h1>
           <p className="text-slate-500">
-            Explora nuestra línea completa de productos veterinarios
+            {t("catalog_subtitle")}
           </p>
         </motion.div>
 
@@ -104,7 +106,7 @@ export default function Catalogo() {
             <div className="lg:col-span-2 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
               <Input
-                placeholder="Buscar productos..."
+                placeholder={t("catalog_search_placeholder")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 h-11"
@@ -116,7 +118,7 @@ export default function Catalogo() {
                 <SelectValue placeholder="Todas las especies" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todas las especies</SelectItem>
+                <SelectItem value="all">{t("catalog_all_species")}</SelectItem>
                 <SelectItem value="Bovinos">Bovinos</SelectItem>
                 <SelectItem value="Equinos">Equinos</SelectItem>
                 <SelectItem value="Porcinos">Porcinos</SelectItem>
@@ -133,7 +135,7 @@ export default function Catalogo() {
                 <SelectValue placeholder="Todas las categorías" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todas las categorías</SelectItem>
+                <SelectItem value="all">{t("catalog_all_categories")}</SelectItem>
                 <SelectItem value="Antibióticos">Antibióticos</SelectItem>
                 <SelectItem value="Antiinflamatorios">Antiinflamatorios</SelectItem>
                 <SelectItem value="Desparasitantes">Desparasitantes</SelectItem>
@@ -147,7 +149,7 @@ export default function Catalogo() {
                 <SelectValue placeholder="Todos los países" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todos los países</SelectItem>
+                <SelectItem value="all">{t("catalog_all_countries")}</SelectItem>
                 <SelectItem value="México">México</SelectItem>
                 <SelectItem value="Brasil">Brasil</SelectItem>
                 <SelectItem value="Argentina">Argentina</SelectItem>
@@ -160,7 +162,7 @@ export default function Catalogo() {
           {activeFiltersCount > 0 && (
             <div className="mt-4 flex items-center gap-2">
               <Filter className="w-4 h-4 text-slate-500" />
-              <span className="text-sm text-slate-600">Filtros activos:</span>
+              <span className="text-sm text-slate-600">{t("catalog_active_filters")}</span>
               <Badge variant="secondary">{activeFiltersCount}</Badge>
               <Button
                 variant="ghost"
@@ -169,7 +171,7 @@ export default function Catalogo() {
                 className="ml-auto text-slate-600 hover:text-slate-800"
               >
                 <X className="w-4 h-4 mr-1" />
-                Limpiar filtros
+                {t("catalog_clear_filters")}
               </Button>
             </div>
           )}
@@ -180,7 +182,7 @@ export default function Catalogo() {
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-slate-600">
-            Mostrando <span className="font-semibold text-slate-800">{filteredProducts.length}</span> producto{filteredProducts.length !== 1 ? 's' : ''}
+            {t("catalog_showing")} <span className="font-semibold text-slate-800">{filteredProducts.length}</span> {filteredProducts.length !== 1 ? t("catalog_products") : t("catalog_product")}
           </p>
         </div>
 
@@ -196,10 +198,10 @@ export default function Catalogo() {
             <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search className="w-12 h-12 text-slate-400" />
             </div>
-            <h3 className="text-xl font-semibold text-slate-800 mb-2">No se encontraron productos</h3>
-            <p className="text-slate-600 mb-4">Intenta ajustar los filtros de búsqueda</p>
+            <h3 className="text-xl font-semibold text-slate-800 mb-2">{t("catalog_not_found_title")}</h3>
+            <p className="text-slate-600 mb-4">{t("catalog_not_found_sub")}</p>
             <Button onClick={clearFilters} variant="outline">
-              Limpiar filtros
+              {t("catalog_clear_filters")}
             </Button>
           </div>
         ) : (
