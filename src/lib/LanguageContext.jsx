@@ -266,9 +266,9 @@ const translations = {
 
 const LANGS = ["es", "pt", "en"];
 const LANG_META = {
-  es: { flag: "🇲🇽", label: "Español" },
-  pt: { flag: "🇧🇷", label: "Português" },
-  en: { flag: "🇺🇸", label: "English" },
+  es: { label: "Español" },
+  pt: { label: "Português" },
+  en: { label: "English" },
 };
 
 const LanguageContext = createContext(null);
@@ -286,7 +286,7 @@ export function LanguageProvider({ children }) {
   const t = (key) => translations[lang]?.[key] ?? translations["es"][key] ?? key;
 
   return (
-    <LanguageContext.Provider value={{ lang, toggleLang, t, langMeta: LANG_META[lang], nextLangMeta: LANG_META[LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]] }}>
+    <LanguageContext.Provider value={{ lang, setLang, toggleLang, t, langMeta: LANG_META[lang], nextLangMeta: LANG_META[LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]] }}>
       {children}
     </LanguageContext.Provider>
   );
