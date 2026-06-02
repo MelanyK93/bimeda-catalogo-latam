@@ -193,7 +193,6 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                                       <p className="text-sm font-medium text-slate-800 group-hover:text-red-600 transition-colors">
                                         {t(tipo.labelKey)}
                                       </p>
-                                      <p className="text-xs text-slate-500 truncate">{fileName}</p>
                                     </div>
                                     <Download className="w-4 h-4 text-slate-400 group-hover:text-red-600 transition-colors" />
                                   </div>
