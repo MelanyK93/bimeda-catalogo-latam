@@ -45,10 +45,10 @@ export default function ProductModal({ producto, isOpen, onClose }) {
           <div className="p-6">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="info">Información del Producto</TabsTrigger>
+                <TabsTrigger value="info">{t("modal_tab_info")}</TabsTrigger>
                 <TabsTrigger value="materiales">
                   <Download className="w-4 h-4 mr-2" />
-                  Material de Producto
+                  {t("modal_tab_materials")}
                 </TabsTrigger>
               </TabsList>
 
@@ -91,7 +91,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                   <div>
                     <h3 className="font-semibold text-slate-800 mb-2 flex items-center gap-2">
                       <Pill className="w-5 h-5 text-red-600" />
-                      Descripción / Composición
+                      {t("modal_description")}
                     </h3>
                     <p className="text-slate-600 leading-relaxed">
                       {producto.descripcion}
@@ -100,7 +100,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
 
                   {producto.especies && producto.especies.length > 0 && (
                     <div>
-                      <h3 className="font-semibold text-slate-800 mb-3">Especies</h3>
+                      <h3 className="font-semibold text-slate-800 mb-3">{t("modal_species")}</h3>
                       <div className="flex flex-wrap gap-2">
                         {producto.especies.map((especie, idx) => (
                           <Badge 
@@ -119,7 +119,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                     <div>
                       <h3 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
                         <MapPin className="w-5 h-5 text-red-600" />
-                        Disponibilidad por País
+                        {t("modal_availability")}
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {producto.paises.map((pais, idx) => (
@@ -137,7 +137,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
 
                   {producto.ficha_tecnica && (
                     <div>
-                      <h3 className="font-semibold text-slate-800 mb-2">Información Técnica</h3>
+                      <h3 className="font-semibold text-slate-800 mb-2">{t("modal_tech_info")}</h3>
                       <p className="text-slate-600 leading-relaxed">
                         {producto.ficha_tecnica}
                       </p>
@@ -151,10 +151,10 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                   <div className="text-center py-16">
                     <Download className="w-16 h-16 mx-auto mb-4 text-slate-300" />
                     <h3 className="text-lg font-semibold text-slate-800 mb-2">
-                      No hay materiales disponibles
+                      {t("modal_no_materials_title")}
                     </h3>
                     <p className="text-slate-600">
-                      Este producto aún no tiene materiales de venta cargados.
+                      {t("modal_no_materials_sub")}
                     </p>
                   </div>
                 ) : (
@@ -168,7 +168,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                           <CardHeader className="pb-3">
                             <div className="flex items-center gap-3">
                               <div className={`w-3 h-3 rounded-full ${region.color}`} />
-                              <CardTitle className="text-lg">{region.label}</CardTitle>
+                              <CardTitle className="text-lg">{t(region.labelKey)}</CardTitle>
                             </div>
                           </CardHeader>
                           <CardContent className="space-y-3">
@@ -191,7 +191,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                                     <Icon className="w-5 h-5 text-slate-500 group-hover:text-red-600 transition-colors" />
                                     <div className="flex-1 min-w-0">
                                       <p className="text-sm font-medium text-slate-800 group-hover:text-red-600 transition-colors">
-                                        {tipo.label}
+                                        {t(tipo.labelKey)}
                                       </p>
                                       <p className="text-xs text-slate-500 truncate">{fileName}</p>
                                     </div>
@@ -216,7 +216,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                     >
                       <button className="w-full flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold rounded-xl shadow-lg transition-all duration-200 group">
                         <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                        Material Publicitario (lonas, flyers, banners...)
+                        {t("modal_advertising")}
                         <ExternalLink className="w-4 h-4 opacity-70" />
                       </button>
                     </a>
@@ -225,7 +225,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
 
                 <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                   <p className="text-sm text-blue-800">
-                    <strong>💡 Tip:</strong> Haz clic en cualquier material para descargarlo. Los materiales están organizados por región para tu comodidad.
+                    {t("modal_tip")}
                   </p>
                 </div>
               </TabsContent>

@@ -67,7 +67,7 @@ export default function Layout({ children, currentPageName }) {
           <SidebarContent className="p-3">
             <SidebarGroup>
               <SidebarGroupLabel className="text-xs font-semibold text-slate-600 uppercase tracking-wider px-3 py-2">
-                Navegación
+                {t("nav_navigation")}
               </SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
@@ -94,7 +94,7 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Language Toggle */}
             <div className="mx-3 mt-4 space-y-2">
-              <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider px-3">Idioma</p>
+              <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider px-3">{t("nav_language")}</p>
               <div className="flex gap-2">
                 {["es", "pt", "en"].map((l) => (
                   <button

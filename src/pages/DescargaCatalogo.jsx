@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { useAuth } from "@/lib/AuthContext";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const PAISES = [
   { nombre: "México", bandera: "🇲🇽" },
@@ -27,6 +28,7 @@ const PAISES = [
 
 export default function DescargaCatalogo() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const isAdmin = user?.role === "admin";
   const [catalogos, setCatalogos] = useState([]);
   const [uploading, setUploading] = useState(null);
@@ -77,12 +79,10 @@ export default function DescargaCatalogo() {
         >
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-3">
-              Catálogo por País
+              {t("download_title")}
             </h1>
             <p className="text-slate-600 text-lg">
-              {isAdmin
-                ? "Sube o descarga los catálogos por país"
-                : "Selecciona el país para descargar el catálogo"}
+              {isAdmin ? t("download_subtitle_admin") : t("download_subtitle_user")}
             </p>
           </div>
 
@@ -112,7 +112,7 @@ export default function DescargaCatalogo() {
                         className="w-full bg-red-600 hover:bg-red-700 text-white disabled:opacity-40"
                       >
                         <FileDown className="w-4 h-4 mr-1" />
-                        {catalogo ? "Descargar" : "No disponible"}
+                        {catalogo ? t("download_btn") : t("download_unavailable")}
                       </Button>
 
                       {/* Admin: upload/delete buttons */}
@@ -137,7 +137,7 @@ export default function DescargaCatalogo() {
                             ) : (
                               <Upload className="w-3 h-3 mr-1" />
                             )}
-                            {catalogo ? "Reemplazar" : "Subir"}
+                            {catalogo ? t("download_replace") : t("download_upload")}
                           </Button>
 
                           {catalogo && (

@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -8,7 +9,7 @@ const regiones = [
   {
     nombre: "Bimeda México",
     pais: "México",
-    descripcion: "Oficinas centrales y distribución para México",
+    descKey: "social_mexico_desc",
     website: "https://www.bimeda.mx",
     color: "from-red-500 to-red-600",
     redes: [
@@ -23,8 +24,8 @@ const regiones = [
   },
   {
     nombre: "Bimeda CAMCAR",
-    pais: "Centroamérica y Caribe",
-    descripcion: "Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panamá y Caribe",
+    paisKey: "social_camcar_country",
+    descKey: "social_camcar_desc",
     website: "https://bimeda.gt",
     color: "from-rose-500 to-rose-600",
     redes: [
@@ -38,8 +39,8 @@ const regiones = [
   },
   {
     nombre: "Bimeda Suramérica",
-    pais: "América del Sur",
-    descripcion: "Colombia, Ecuador, Perú, Venezuela, Bolivia, Paraguay, Uruguay, Argentina",
+    pais: "South America",
+    descKey: "social_sur_desc",
     website: "https://www.bimedasuramerica.com",
     color: "from-red-600 to-red-700",
     redes: [
@@ -56,7 +57,7 @@ const regiones = [
   {
     nombre: "Bimeda Brasil",
     pais: "Brasil",
-    descripcion: "Oficinas y distribución para todo Brasil",
+    descKey: "social_brasil_desc",
     website: "https://www.bimeda.com.br",
     color: "from-red-700 to-red-800",
     redes: [
@@ -72,6 +73,7 @@ const regiones = [
 ];
 
 export default function RedesSociales() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-rose-50 p-6">
       <div className="max-w-7xl mx-auto">
@@ -82,10 +84,10 @@ export default function RedesSociales() {
           className="text-center mb-12"
         >
           <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-3">
-            Redes Sociales y Contacto
+            {t("social_title")}
           </h1>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            Conéctate con Bimeda en tu región. Síguenos en nuestras redes sociales y mantente actualizado.
+            {t("social_subtitle")}
           </p>
         </motion.div>
 
@@ -109,11 +111,11 @@ export default function RedesSociales() {
                       </CardTitle>
                       <div className="flex items-center gap-2 text-slate-600">
                         <MapPin className="w-4 h-4" />
-                        <span className="text-sm font-medium">{region.pais}</span>
+                        <span className="text-sm font-medium">{region.paisKey ? t(region.paisKey) : region.pais}</span>
                       </div>
                     </div>
                   </div>
-                  <p className="text-sm text-slate-600">{region.descripcion}</p>
+                  <p className="text-sm text-slate-600">{t(region.descKey)}</p>
                 </CardHeader>
 
                 <CardContent className="space-y-6">
@@ -126,13 +128,13 @@ export default function RedesSociales() {
                       className="inline-flex items-center gap-2 text-red-600 hover:text-red-700 font-medium transition-colors"
                     >
                       <Globe className="w-4 h-4" />
-                      Visitar sitio web
+                      {t("social_visit_website")}
                     </a>
                   </div>
 
                   {/* Redes Sociales */}
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-700 mb-3">Redes Sociales</h3>
+                    <h3 className="text-sm font-semibold text-slate-700 mb-3">{t("social_networks")}</h3>
                     <div className="flex flex-wrap gap-2">
                       {region.redes.map((red) => {
                         const Icon = red.icon;
@@ -160,7 +162,7 @@ export default function RedesSociales() {
 
                   {/* Contacto */}
                   <div className="pt-4 border-t border-slate-200">
-                    <h3 className="text-sm font-semibold text-slate-700 mb-3">Contacto</h3>
+                    <h3 className="text-sm font-semibold text-slate-700 mb-3">{t("social_contact")}</h3>
                     <div className="space-y-2">
                       <a
                         href={`mailto:${region.contacto.email}`}
@@ -197,9 +199,9 @@ export default function RedesSociales() {
                 alt="Bimeda"
                 className="h-12 mx-auto mb-4"
               />
-              <h3 className="text-2xl font-bold mb-2">Bimeda - Salud Animal</h3>
+              <h3 className="text-2xl font-bold mb-2">{t("social_footer_title")}</h3>
               <p className="text-red-100 max-w-2xl mx-auto">
-                Productos veterinarios de calidad para el cuidado y bienestar de los animales en toda Latinoamérica.
+                {t("social_footer_desc")}
               </p>
             </CardContent>
           </Card>
