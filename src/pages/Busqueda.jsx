@@ -15,7 +15,7 @@ import ProductCard from "../components/catalogo/ProductCard";
 import ProductModal from "../components/catalogo/ProductModal";
 
 export default function Busqueda() {
-  const { t } = useLanguage();
+  const { t, tEspecie, tCategoria } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedEspecies, setSelectedEspecies] = useState([]);
   const [selectedCategorias, setSelectedCategorias] = useState([]);
@@ -138,7 +138,7 @@ export default function Busqueda() {
                           htmlFor={`especie-${especie}`}
                           className="text-sm text-slate-700 cursor-pointer"
                         >
-                          {especie}
+                          {tEspecie(especie)}
                         </label>
                       </div>
                     ))}
@@ -162,7 +162,7 @@ export default function Busqueda() {
                           htmlFor={`categoria-${categoria}`}
                           className="text-sm text-slate-700 cursor-pointer"
                         >
-                          {categoria}
+                          {tCategoria(categoria)}
                         </label>
                       </div>
                     ))}
@@ -200,7 +200,7 @@ export default function Busqueda() {
           <div className="lg:col-span-3">
             <div className="mb-6 bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-slate-200">
               <p className="text-slate-600">
-                Mostrando <span className="font-semibold text-slate-800">{filteredProducts.length}</span> resultado{filteredProducts.length !== 1 ? 's' : ''}
+                {t("search_showing")} <span className="font-semibold text-slate-800">{filteredProducts.length}</span> {filteredProducts.length !== 1 ? t("search_results") : t("search_result")}
               </p>
             </div>
 
@@ -219,10 +219,10 @@ export default function Busqueda() {
                 <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Search className="w-12 h-12 text-slate-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">No se encontraron productos</h3>
-                <p className="text-slate-600 mb-4">Intenta ajustar los filtros de búsqueda</p>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">{t("search_not_found_title")}</h3>
+                <p className="text-slate-600 mb-4">{t("search_not_found_sub")}</p>
                 <Button onClick={clearAllFilters} variant="outline">
-                  Limpiar todos los filtros
+                  {t("search_clear_all_filters")}
                 </Button>
               </motion.div>
             ) : (

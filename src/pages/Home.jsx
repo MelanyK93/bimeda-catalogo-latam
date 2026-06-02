@@ -27,7 +27,7 @@ const stats = [
 const featureIcons = [Zap, Shield, Globe];
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, tEspecie } = useLanguage();
   const [activeEspecie, setActiveEspecie] = useState(null);
   const [countedStats, setCountedStats] = useState([0, 0, 0]);
   const [productosRecientes, setProductosRecientes] = useState([]);
@@ -318,7 +318,7 @@ export default function Home() {
                         {especie.icon}
                       </div>
                       <h3 className="font-bold text-base md:text-lg text-slate-800 group-hover:text-red-600 transition-colors">
-                        {especie.nombre}
+                        {tEspecie(especie.nombre)}
                       </h3>
                       <div className="mt-2 flex items-center justify-center gap-1 text-xs text-slate-400 group-hover:text-red-500 transition-colors">
                         <span>{t("species_view")}</span>
