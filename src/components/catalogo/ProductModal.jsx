@@ -29,7 +29,7 @@ const TIPOS_MATERIAL = [
 ];
 
 export default function ProductModal({ producto, isOpen, onClose }) {
-  const { t } = useLanguage();
+  const { t, tEspecie, tCategoria } = useLanguage();
   const [activeTab, setActiveTab] = useState("info");
 
   if (!producto) return null;
@@ -73,7 +73,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                       </DialogTitle>
                       {producto.categoria && (
                         <Badge className="w-fit bg-red-600 text-white">
-                          {producto.categoria}
+                          {tCategoria(producto.categoria)}
                         </Badge>
                       )}
                     </DialogHeader>
@@ -108,7 +108,7 @@ export default function ProductModal({ producto, isOpen, onClose }) {
                             variant="outline"
                             className="bg-red-50 text-red-700 border-red-200"
                           >
-                            {especie}
+                            {tEspecie(especie)}
                           </Badge>
                         ))}
                       </div>

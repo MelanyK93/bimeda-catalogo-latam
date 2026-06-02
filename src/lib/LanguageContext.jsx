@@ -1,5 +1,62 @@
 import React, { createContext, useContext, useState } from "react";
 
+const especiesMap = {
+  es: {
+    Bovinos: "Bovinos", Equinos: "Equinos", Porcinos: "Porcinos", Ovinos: "Ovinos",
+    Caprinos: "Caprinos", Caninos: "Caninos", Felinos: "Felinos", Aves: "Aves",
+    Pollos: "Pollos", Pavos: "Pavos", Camélidos: "Camélidos", Lechones: "Lechones",
+    Terneros: "Terneros", Bezerros: "Bezerros", Conejos: "Conejos", Hamster: "Hamster",
+    Hurones: "Hurones", Cuyos: "Cuyos",
+  },
+  pt: {
+    Bovinos: "Bovinos", Equinos: "Equinos", Porcinos: "Suínos", Ovinos: "Ovinos",
+    Caprinos: "Caprinos", Caninos: "Caninos", Felinos: "Felinos", Aves: "Aves",
+    Pollos: "Frangos", Pavos: "Perus", Camélidos: "Camelídeos", Lechones: "Leitões",
+    Terneros: "Bezerros", Bezerros: "Bezerros", Conejos: "Coelhos", Hamster: "Hamster",
+    Hurones: "Furões", Cuyos: "Porquinhos-da-Índia",
+  },
+  en: {
+    Bovinos: "Cattle", Equinos: "Equine", Porcinos: "Swine", Ovinos: "Sheep",
+    Caprinos: "Goats", Caninos: "Dogs", Felinos: "Cats", Aves: "Poultry",
+    Pollos: "Chickens", Pavos: "Turkeys", Camélidos: "Camelids", Lechones: "Piglets",
+    Terneros: "Calves", Bezerros: "Calves", Conejos: "Rabbits", Hamster: "Hamster",
+    Hurones: "Ferrets", Cuyos: "Guinea Pigs",
+  },
+};
+
+const categoriasMap = {
+  es: {
+    "Antibióticos": "Antibióticos", "Antiinflamatorios": "Antiinflamatorios",
+    "Desparasitantes": "Desparasitantes", "Endectocida": "Endectocida",
+    "Ectoparasiticida": "Ectoparasiticida", "Vitaminas y Minerales": "Vitaminas y Minerales",
+    "Hormonales": "Hormonales", "Intramamarios": "Intramamarios",
+    "Reconstituyentes y Rehidratantes": "Reconstituyentes y Rehidratantes",
+    "Desinfectante - Bioseguridad": "Desinfectante - Bioseguridad",
+    "Control ambiental": "Control ambiental", "Condroprotector": "Condroprotector",
+    "Nutracéuticos": "Nutracéuticos", "Antisépticos": "Antisépticos",
+  },
+  pt: {
+    "Antibióticos": "Antibióticos", "Antiinflamatorios": "Anti-inflamatórios",
+    "Desparasitantes": "Antiparasitários", "Endectocida": "Endectocida",
+    "Ectoparasiticida": "Ectoparasiticida", "Vitaminas y Minerales": "Vitaminas e Minerais",
+    "Hormonales": "Hormonais", "Intramamarios": "Intramamários",
+    "Reconstituyentes y Rehidratantes": "Reconstituintes e Reidratantes",
+    "Desinfectante - Bioseguridad": "Desinfetante - Biossegurança",
+    "Control ambiental": "Controle ambiental", "Condroprotector": "Condroprotector",
+    "Nutracéuticos": "Nutracêuticos", "Antisépticos": "Antissépticos",
+  },
+  en: {
+    "Antibióticos": "Antibiotics", "Antiinflamatorios": "Anti-inflammatories",
+    "Desparasitantes": "Antiparasitics", "Endectocida": "Endectocide",
+    "Ectoparasiticida": "Ectoparasiticide", "Vitaminas y Minerales": "Vitamins & Minerals",
+    "Hormonales": "Hormonal", "Intramamarios": "Intramammary",
+    "Reconstituyentes y Rehidratantes": "Reconstitutents & Rehydrants",
+    "Desinfectante - Bioseguridad": "Disinfectant - Biosecurity",
+    "Control ambiental": "Environmental Control", "Condroprotector": "Chondroprotector",
+    "Nutracéuticos": "Nutraceuticals", "Antisépticos": "Antiseptics",
+  },
+};
+
 const translations = {
   es: {
     nav_home: "Inicio",
@@ -347,9 +404,11 @@ export function LanguageProvider({ children }) {
   };
 
   const t = (key) => translations[lang]?.[key] ?? translations["es"][key] ?? key;
+  const tEspecie = (val) => especiesMap[lang]?.[val] ?? val;
+  const tCategoria = (val) => categoriasMap[lang]?.[val] ?? val;
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggleLang, t, langMeta: LANG_META[lang], nextLangMeta: LANG_META[LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]] }}>
+    <LanguageContext.Provider value={{ lang, setLang, toggleLang, t, tEspecie, tCategoria, langMeta: LANG_META[lang], nextLangMeta: LANG_META[LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]] }}>
       {children}
     </LanguageContext.Provider>
   );

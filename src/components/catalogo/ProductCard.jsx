@@ -3,8 +3,10 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { Package, MapPin } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ProductCard({ producto, onClick }) {
+  const { tEspecie, tCategoria } = useLanguage();
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -35,7 +37,7 @@ export default function ProductCard({ producto, onClick }) {
           {producto.categoria && (
             <div className="absolute top-3 right-3">
               <Badge className="bg-red-600 text-white shadow-lg">
-                {producto.categoria}
+                {tCategoria(producto.categoria)}
               </Badge>
             </div>
           )}
@@ -60,7 +62,7 @@ export default function ProductCard({ producto, onClick }) {
                   variant="outline" 
                   className="text-xs bg-red-50 text-red-700 border-red-200"
                 >
-                  {especie}
+                  {tEspecie(especie)}
                 </Badge>
               ))}
               {producto.especies.length > 3 && (
@@ -75,6 +77,7 @@ export default function ProductCard({ producto, onClick }) {
             <div className="flex items-center gap-1 text-xs text-slate-500">
               <MapPin className="w-3 h-3" />
               <span>{producto.paises.length} {producto.paises.length === 1 ? 'país' : 'países'}</span>
+              {/* países son nombres propios, no se traducen */}
             </div>
           )}
         </CardContent>
