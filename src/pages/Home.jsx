@@ -27,7 +27,7 @@ const stats = [
 const featureIcons = [Zap, Shield, Globe];
 
 export default function Home() {
-  const { t, tEspecie } = useLanguage();
+  const { t, tEspecie, tCategoria } = useLanguage();
   const [activeEspecie, setActiveEspecie] = useState(null);
   const [countedStats, setCountedStats] = useState([0, 0, 0]);
   const [productosRecientes, setProductosRecientes] = useState([]);
@@ -227,7 +227,7 @@ export default function Home() {
                   <div className="p-3">
                     <p className="text-xs font-bold text-slate-800 leading-tight line-clamp-2 group-hover:text-red-600 transition-colors">{producto.nombre}</p>
                     {producto.categoria && (
-                      <span className="inline-block mt-1 text-[10px] text-slate-400 bg-slate-100 rounded-full px-2 py-0.5 truncate max-w-full">{producto.categoria}</span>
+                      <span className="inline-block mt-1 text-[10px] text-slate-400 bg-slate-100 rounded-full px-2 py-0.5 truncate max-w-full">{tCategoria(producto.categoria)}</span>
                     )}
                   </div>
                 </motion.div>
